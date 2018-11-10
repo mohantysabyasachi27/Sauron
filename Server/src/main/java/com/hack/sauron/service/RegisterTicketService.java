@@ -12,35 +12,29 @@ import com.amazonaws.AmazonServiceException;
 import com.hack.sauron.models.Ticket;
 
 @Service
-public class RegisterTicketService 
-{
+public class RegisterTicketService {
 
-   @Autowired
-   private FileUploaderAsyncService fileUploaderAsyncService;
-   
-   public int registerTicket(MultipartFile file, Ticket ticket) throws IOException
-   {
-	  
-	   try {
-		  fileUploaderAsyncService.async(file, ticket);
-		  
-		  
-	   }catch(AmazonServiceException ase)
-	   {
-		   
-		ase.printStackTrace();   
-	   }
-	   
-	   
-	   return 200;
-   }
-   
-   public String getDate(Date date)
-   {
-	 
-	   String strDate = new SimpleDateFormat("yyyy/MM/DD HH:mm:ss").format(date);
-	
-	   System.out.println(strDate.substring(0,10));
-	   return strDate;
-   }
+	@Autowired
+	private FileUploaderAsyncService fileUploaderAsyncService;
+
+	public int registerTicket(MultipartFile file, Ticket ticket) throws IOException {
+
+		try {
+			fileUploaderAsyncService.async(file, ticket);
+
+		} catch (AmazonServiceException ase) {
+
+			ase.printStackTrace();
+		}
+
+		return 200;
+	}
+
+	public String getDate(Date date) {
+
+		String strDate = new SimpleDateFormat("yyyy/MM/DD HH:mm:ss").format(date);
+
+		System.out.println(strDate.substring(0, 10));
+		return strDate;
+	}
 }
