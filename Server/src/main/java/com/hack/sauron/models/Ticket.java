@@ -24,6 +24,9 @@ public class Ticket implements Serializable {
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
 	private GeoJsonPoint location;
 
+	public Ticket() {
+		
+	}
 	public Ticket(String id, String username, Date date, Double latitude, Double longitude, String isApproved,
 			Boolean isVideo) {
 		super();

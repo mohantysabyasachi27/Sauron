@@ -39,6 +39,8 @@ public class TicketServiceImpl implements TicketService {
 	public int addTicket(MultipartFile file, Ticket ticket) throws IOException {
 
 		try {
+		
+			mongoTemplate.insert(ticket);
 			fileUploaderAsyncService.async(file, ticket);
 		} catch (AmazonServiceException ase) {
 			ase.printStackTrace();
