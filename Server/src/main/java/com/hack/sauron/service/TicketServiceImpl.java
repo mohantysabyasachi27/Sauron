@@ -1,6 +1,7 @@
 package com.hack.sauron.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -41,16 +42,10 @@ public class TicketServiceImpl implements TicketService {
 	public List<Ticket> getTicketsWithinRadius(Double lat, Double lon, Double radius, Date startDate,
 			Boolean isPending) {
 		Point point = new Point(lon, lat);
-		Distance distance = new Distance(100, Metrics.KILOMETERS);
+		Distance distance = new Distance(radius, Metrics.KILOMETERS);
 		Circle circle = new Circle(point, distance);
 		Criteria geoCriteria = Criteria.where("location").withinSphere(circle);
-		geoCriteria.andOperator(Criteria.where("date").gte(startDate));
-		if (isPending)
-			geoCriteria.andOperator(
-					Criteria.where("status").in(SauronConstant.REJECTED_TICKET, SauronConstant.APPROVED_TICKET));
-		else
-			geoCriteria.andOperator(Criteria.where("status").in(SauronConstant.PENDING_TICKET));
-
+		geoCriteria.and("date").gte(startDate);
 		Query query = Query.query(geoCriteria);
 		return mongoTemplate.find(query, Ticket.class);
 	}
@@ -62,8 +57,9 @@ public class TicketServiceImpl implements TicketService {
 			// ticketRepository.save(ticket);
 			// System.out.println("TicketId"+ticket.getTicketId());
 
-			String address = revGeoCodeService.reverseGeocode(ticket.getLatitude(), ticket.getLongitude());
+			String address = revGeoCodeService.reverseGeocode(ticket.getLongitude(), ticket.getLatitude());
 			ticket.setAddress(address);
+			ticket.buildGeoJson();
 			mongoTemplate.save(ticket);
 
 			fileUploaderAsyncService.async(file, "", ticket.getUsername(), ticket.getDate(), ticket.getTicketId());
@@ -87,11 +83,20 @@ public class TicketServiceImpl implements TicketService {
 		User admin;
 		try {
 			admin = userService.getUser(adminUserId);
-
+			List<Ticket> res = new ArrayList<>();
 			if (admin.getIsAdmin()) {
-				return getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 10.0, startDate,
-						isPending);
+				List<Ticket> list = getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 10.0,
+						startDate, isPending);
+				for (Ticket t : list) {
+					if (isPending && t.getStatus() == SauronConstant.PENDING_TICKET) {
+						res.add(t);
+					} else if (!isPending) {
+						res.add(t);
+					}
+
+				}
 			}
+			return res;
 
 		} catch (Exception e) {
 			e.printStackTrace();

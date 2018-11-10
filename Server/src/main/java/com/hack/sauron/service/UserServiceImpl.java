@@ -5,16 +5,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.hack.sauron.models.User;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordencoder;
-	
+
 	@Override
-	public Boolean addUser(User user) throws Exception{
+	public Boolean addUser(User user) throws Exception {
 		user.setPassword(passwordencoder.encode(user.getPassword()));
 		userRepository.save(user);
 		System.out.println(user.getId());
@@ -24,8 +24,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Boolean updateUser(User user) {
 		userRepository.save(user);
-		
-		
+
 		return true;
 	}
 
@@ -33,7 +32,5 @@ public class UserServiceImpl implements UserService{
 	public User getUser(String userName) throws Exception {
 		return userRepository.findByEmailId(userName);
 	}
-
-
 
 }

@@ -75,10 +75,10 @@ public class FileUploaderAsyncService {
 			// HttpMethod.PUT)).toString();
 			url = String.valueOf(amazonS3.getUrl(awsS3Config.getBucketName(), key));
 			// ticket.getLinks().add(url);
-			System.out.println("File uploaded to S3+++++++++++");
+			//System.out.println("File uploaded to S3+++++++++++");
 			Ticket ticketData = mongoTemplate.findById(id, Ticket.class);
-			System.out.println(ticketData.getTicketId());
-			System.out.println("File uploaded to S3");
+			//System.out.println(ticketData.getTicketId());
+			//System.out.println("File uploaded to S3");
 			ticketData.setLink(url);
 			System.out.println(ticketData.getLink());
 

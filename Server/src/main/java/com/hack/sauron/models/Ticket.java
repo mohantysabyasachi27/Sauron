@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,27 +29,25 @@ public class Ticket implements Serializable {
 	private String address;
 
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
-	private GeoJsonPoint location;
+	private GeoJson location;
 
 	public Ticket() {
 
 	}
-
 
 	public Ticket(String id, String username, Date date, Double latitude, Double longitude, Integer status,
 			Boolean isVideo, String link, String address) {
 
 		super();
 		this.ticketId = id;
-		this.address=address;
+		this.address = address;
 		this.username = username;
 		this.date = date;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.setStatus(status);
 		this.isVideo = isVideo;
-		this.location = new GeoJsonPoint(longitude, latitude);
-		
+		this.location = buildGeoJson();
 
 	}
 
@@ -69,9 +66,11 @@ public class Ticket implements Serializable {
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public void setIsVideo(Boolean isVideo) {
 		this.isVideo = isVideo;
 	}
@@ -116,16 +115,6 @@ public class Ticket implements Serializable {
 		this.longitude = longitude;
 	}
 
-	public GeoJsonPoint getLocation() {
-		return location;
-	}
-
-	public void setLocation(GeoJsonPoint location) {
-		this.location = location;
-	}
-
-	
-
 	public String getLinks() {
 		return links;
 	}
@@ -134,13 +123,25 @@ public class Ticket implements Serializable {
 		this.links = links;
 	}
 
-
 	public Integer getStatus() {
 		return status;
 	}
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public GeoJson buildGeoJson() {
+
+		GeoJson geo = new GeoJson();
+		geo.setType("Point");
+		List<Double> list = new ArrayList<>();
+		list.add(longitude);
+		list.add(latitude);
+		geo.setCoordinates(list);
+		this.location = geo;
+		return this.location;
+
 	}
 
 }

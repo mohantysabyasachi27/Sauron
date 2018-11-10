@@ -68,9 +68,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("MYSESSIONID").invalidateHttpSession(true).logoutUrl("/logout")
 				.logoutSuccessHandler(springLogoutSuccessHandler);
 
-		http.httpBasic().realmName("sauron").and().sessionManagement()
+		/*http.httpBasic().realmName("sauron").and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().authorizeRequests()
-				.antMatchers("/users/**").permitAll().anyRequest().authenticated();
+				.antMatchers("/users/**").permitAll().anyRequest().authenticated();*/
 	}
 
 	@Bean

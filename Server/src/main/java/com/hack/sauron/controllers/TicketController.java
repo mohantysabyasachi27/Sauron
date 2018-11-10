@@ -1,5 +1,7 @@
 package com.hack.sauron.controllers;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.List;
@@ -61,16 +63,19 @@ public class TicketController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Response> getTicket(@RequestParam String adminUserId, @RequestParam Date startDate,
+	public List<Ticket> getTicket(@RequestParam String adminUserId, @RequestParam String startDate,
 			@RequestParam Boolean isPending) {
 		Response response = new Response("200", true, "");
 		try {
-			ticketService.getTickets(adminUserId, startDate, isPending);
-			return new ResponseEntity<Response>(response, HttpStatus.OK);
+			DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = (Date) parser.parse(startDate);
+			return ticketService.getTickets(adminUserId, date, isPending);
+			// return new ResponseEntity<Response>(response, HttpStatus.OK);
+
 		} catch (Exception e) {
 
 			response.setStatusCode("500");
-			return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return null;
 		}
 
 	}
