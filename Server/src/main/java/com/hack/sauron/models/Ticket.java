@@ -11,6 +11,8 @@ import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.hack.sauron.constants.SauronConstant;
+
 @Document(collection = "Ticket")
 public class Ticket implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,38 +24,39 @@ public class Ticket implements Serializable {
 	private Double longitude;
 	private Boolean isVideo;
 	private String links;
-	private String status;
+	private Integer status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
+	private String address;
 
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
 	private GeoJsonPoint location;
 
 	public Ticket() {
-		
+
 	}
-	public Ticket(String id, String username, Date date, Double latitude, Double longitude, String isApproved,
-			Boolean isVideo,String link) {
+
+	public Ticket(String id, String username, Date date, Double latitude, Double longitude, Integer status,
+			Boolean isVideo, String link, String address) {
 		super();
 		this.ticketId = id;
 		this.username = username;
 		this.date = date;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.setStatus(isApproved);
+		this.setStatus(status);
 		this.isVideo = isVideo;
 		this.location = new GeoJsonPoint(longitude, latitude);
-	
+		this.address = address;
 
 	}
 
 	public String getLink() {
 		return links;
 	}
-	
-	public void setLink(String link)
-	{
-		links =link;
+
+	public void setLink(String link) {
+		links = link;
 	}
-	
+
 	public Boolean getIsVideo() {
 		return isVideo;
 	}
@@ -62,13 +65,14 @@ public class Ticket implements Serializable {
 		this.isVideo = isVideo;
 	}
 
-
 	public String getTicketId() {
 		return ticketId;
 	}
+
 	public void setTicketId(String ticketId) {
 		this.ticketId = ticketId;
 	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -101,8 +105,6 @@ public class Ticket implements Serializable {
 		this.longitude = longitude;
 	}
 
-
-
 	public GeoJsonPoint getLocation() {
 		return location;
 	}
@@ -111,11 +113,29 @@ public class Ticket implements Serializable {
 		this.location = location;
 	}
 
-	public String getStatus() {
+	
+
+	public String getLinks() {
+		return links;
+	}
+
+	public void setLinks(String links) {
+		this.links = links;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

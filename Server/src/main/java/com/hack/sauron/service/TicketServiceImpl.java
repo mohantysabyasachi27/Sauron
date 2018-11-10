@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonServiceException;
+import com.hack.sauron.constants.SauronConstant;
 import com.hack.sauron.models.Ticket;
 import com.hack.sauron.models.User;
 
@@ -42,9 +43,9 @@ public class TicketServiceImpl implements TicketService {
 		Criteria geoCriteria = Criteria.where("location").withinSphere(circle);
 		geoCriteria.andOperator(Criteria.where("date").gte(startDate));
 		if (isPending)
-			geoCriteria.andOperator(Criteria.where("status").in(0, 1));
+			geoCriteria.andOperator(Criteria.where("status").in(SauronConstant.REJECTED_TICKET, SauronConstant.APPROVED_TICKET));
 		else
-			geoCriteria.andOperator(Criteria.where("status").in(2));
+			geoCriteria.andOperator(Criteria.where("status").in(SauronConstant.PENDING_TICKET));
 
 		Query query = Query.query(geoCriteria);
 		return mongoTemplate.find(query, Ticket.class);

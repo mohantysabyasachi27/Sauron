@@ -41,8 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserGoogleAuthenticationSuccessHandler userGoogleAuthenticationHandler;
+	
 	@Autowired
 	private UserAuthenticationFailureHandler userAuthenticationFailureHandler;
+	
 	@Autowired
 	private UserAuthenticationSuccessHandler userAuthenticationSuccessHandler;
 
@@ -62,10 +64,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.authorizeRequests().antMatchers("/login/**").authenticated().anyRequest().permitAll().and().formLogin()
 				.failureUrl("/login?error").failureHandler(userAuthenticationFailureHandler)
-				.successHandler(userAuthenticationSuccessHandler)
-				.permitAll().and().logout().deleteCookies("MYSESSIONID").invalidateHttpSession(true)
-				.logoutUrl("/logout").logoutSuccessHandler(springLogoutSuccessHandler);
-		
+				.successHandler(userAuthenticationSuccessHandler).permitAll().and().logout()
+				.deleteCookies("MYSESSIONID").invalidateHttpSession(true).logoutUrl("/logout")
+				.logoutSuccessHandler(springLogoutSuccessHandler);
+
 		http.httpBasic().realmName("sauron").and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().authorizeRequests()
 				.antMatchers("/users/**").permitAll().anyRequest().authenticated();
