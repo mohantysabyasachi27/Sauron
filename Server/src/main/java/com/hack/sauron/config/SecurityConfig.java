@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
@@ -36,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private SpringLogoutSuccessHandler springLogoutSuccessHandler;
 
 	@Autowired
+	private AuthenticationEntryPoint authEntryPoint;
+
+	@Autowired
 	private UserGoogleAuthenticationSuccessHandler userGoogleAuthenticationHandler;
 	@Autowired
 	private UserAuthenticationFailureHandler userAuthenticationFailureHandler;
@@ -58,10 +62,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.authorizeRequests().antMatchers("/login/**").authenticated().anyRequest().permitAll().and().formLogin()
 				.failureUrl("/login?error").failureHandler(userAuthenticationFailureHandler)
-				.successHandler(userAuthenticationSuccessHandler)/* .loginPage("/movieloginpage.html") */
-				.permitAll().and().oauth2Login().successHandler(userGoogleAuthenticationHandler).and().logout()
-				.deleteCookies("MYSESSIONID").invalidateHttpSession(true).logoutSuccessUrl("/oauth2")
+				.successHandler(userAuthenticationSuccessHandler)
+				.permitAll().and().logout().deleteCookies("MYSESSIONID").invalidateHttpSession(true)
 				.logoutUrl("/logout").logoutSuccessHandler(springLogoutSuccessHandler);
+		
+		http.httpBasic().realmName("sauron").and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().authorizeRequests()
+				.antMatchers("/users/**").permitAll().anyRequest().authenticated();
 	}
 
 	@Bean

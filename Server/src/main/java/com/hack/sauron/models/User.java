@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.hack.sauron.constants.SauronConstant;
 
 @Document(collection = "User")
-public class User implements Serializable{
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
@@ -21,7 +21,10 @@ public class User implements Serializable{
 	private Set<Role> roles = new HashSet<>();
 	private String userName;
 	private String password;
-	@Indexed(name = "emailId_index", unique=true)
+	private Boolean isAdmin = Boolean.FALSE;
+	private Double[] officeLatLng = new Double[2];
+
+	@Indexed(name = "emailId_index", unique = true)
 	private String emailId;
 	private String mobile;
 	private String address;
@@ -133,5 +136,23 @@ public class User implements Serializable{
 				+ ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", mobile=" + mobile
 				+ ", address=" + address + "]";
 	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public Double[] getOfficeLatLng() {
+		return officeLatLng;
+	}
+
+	public void setOfficeLatLng(Double[] officeLatLng) {
+		this.officeLatLng = officeLatLng;
+	}
+
+	
 
 }

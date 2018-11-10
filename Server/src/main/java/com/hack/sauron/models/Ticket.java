@@ -21,8 +21,8 @@ public class Ticket implements Serializable {
 	private Double latitude;
 	private Double longitude;
 	private Boolean isVideo;
-	private String isApproved;
 	private String links;
+	private String status;
 
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
 	private GeoJsonPoint location;
@@ -38,7 +38,7 @@ public class Ticket implements Serializable {
 		this.date = date;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.isApproved = isApproved;
+		this.setStatus(isApproved);
 		this.isVideo = isVideo;
 		this.location = new GeoJsonPoint(longitude, latitude);
 	
@@ -101,13 +101,7 @@ public class Ticket implements Serializable {
 		this.longitude = longitude;
 	}
 
-	public String getIsApproved() {
-		return isApproved;
-	}
 
-	public void setIsApproved(String isApproved) {
-		this.isApproved = isApproved;
-	}
 
 	public GeoJsonPoint getLocation() {
 		return location;
@@ -115,6 +109,14 @@ public class Ticket implements Serializable {
 
 	public void setLocation(GeoJsonPoint location) {
 		this.location = location;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

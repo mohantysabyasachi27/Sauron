@@ -36,7 +36,6 @@ import com.mongodb.MongoClient;
 @PropertySource("classpath:api.properties")
 public class SauronConfig {
 
-	
 	private static List<String> clients = Arrays.asList("google"/* , "facebook" */);
 
 	@Value("${spring.security.oauth2.client.clientId}")
