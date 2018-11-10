@@ -26,6 +26,8 @@ import com.hack.sauron.service.CacheService;
 import com.hack.sauron.service.CacheServiceImpl;
 import com.hack.sauron.service.ReverseGeocodeService;
 import com.hack.sauron.service.ReverseGeocodeServiceImpl;
+import com.hack.sauron.service.TicketService;
+import com.hack.sauron.service.TicketServiceImpl;
 import com.hack.sauron.service.UserService;
 import com.hack.sauron.service.UserServiceImpl;
 import com.mongodb.MongoClient;
@@ -72,6 +74,11 @@ public class SauronConfig {
 	@Bean
 	public RestTemplate restTemlate() {
 		return new RestTemplate();
+	}
+	
+	@Bean
+	public TicketService ticketService() {
+		return new TicketServiceImpl();	
 	}
 
 	public @Bean MongoDbFactory mongoDbFactory() throws Exception {
