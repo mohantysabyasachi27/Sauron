@@ -1,0 +1,41 @@
+<mat-form-field>
+  <mat-select [(value)]="selected" placeholder="Pick Date Here">
+    <mat-option value="1">Past 24 hours</mat-option>
+    <mat-option value="2">Past 2 Days</mat-option>
+    <mat-option value="5">Past 5 Days</mat-option>
+    <mat-option value="10">Past 10 Days</mat-option>
+    <mat-option value="15">Past 15 Days</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<p>You selected: {{selected}}</p>
+<div style="text-align:center">
+  <button (click)="openModal()">Open Dialog</button>
+</div> 
+
+
+<agm-map [latitude]="lat" [longitude]="lng">
+<agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
+     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
+     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
+     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
+     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
+     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
+     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
+     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
+
+  </agm-marker-cluster>
+</agm-map>

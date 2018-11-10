@@ -1,0 +1,6 @@
+<mat-tab-group (selectedTabChange)="test($event)">
+  <mat-tab label="Pending"><app-table [tabIndex]="index" [data]="prop1"></app-table>
+  </mat-tab>
+  <mat-tab label="History"><app-history [tabIndex]="index"></app-history>
+  </mat-tab>
+</mat-tab-group>
