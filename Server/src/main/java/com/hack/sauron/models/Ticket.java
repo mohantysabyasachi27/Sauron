@@ -24,7 +24,9 @@ public class Ticket implements Serializable {
 	private Double longitude;
 	private Boolean isVideo;
 	private String links;
+
 	private Integer status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
+
 	private String address;
 
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
@@ -34,10 +36,13 @@ public class Ticket implements Serializable {
 
 	}
 
+
 	public Ticket(String id, String username, Date date, Double latitude, Double longitude, Integer status,
 			Boolean isVideo, String link, String address) {
+
 		super();
 		this.ticketId = id;
+		this.address=address;
 		this.username = username;
 		this.date = date;
 		this.latitude = latitude;
@@ -45,7 +50,7 @@ public class Ticket implements Serializable {
 		this.setStatus(status);
 		this.isVideo = isVideo;
 		this.location = new GeoJsonPoint(longitude, latitude);
-		this.address = address;
+		
 
 	}
 
@@ -61,6 +66,12 @@ public class Ticket implements Serializable {
 		return isVideo;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public void setIsVideo(Boolean isVideo) {
 		this.isVideo = isVideo;
 	}
@@ -123,13 +134,6 @@ public class Ticket implements Serializable {
 		this.links = links;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
 
 	public Integer getStatus() {
 		return status;

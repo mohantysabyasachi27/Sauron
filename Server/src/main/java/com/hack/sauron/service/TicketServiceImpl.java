@@ -29,8 +29,11 @@ public class TicketServiceImpl implements TicketService {
 	private FileUploaderAsyncService fileUploaderAsyncService;
 
 	@Autowired
+	private ReverseGeocodeService revGeoCodeService;
+
+	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private TicketRepository ticketRepository;
 
@@ -43,7 +46,8 @@ public class TicketServiceImpl implements TicketService {
 		Criteria geoCriteria = Criteria.where("location").withinSphere(circle);
 		geoCriteria.andOperator(Criteria.where("date").gte(startDate));
 		if (isPending)
-			geoCriteria.andOperator(Criteria.where("status").in(SauronConstant.REJECTED_TICKET, SauronConstant.APPROVED_TICKET));
+			geoCriteria.andOperator(
+					Criteria.where("status").in(SauronConstant.REJECTED_TICKET, SauronConstant.APPROVED_TICKET));
 		else
 			geoCriteria.andOperator(Criteria.where("status").in(SauronConstant.PENDING_TICKET));
 
@@ -54,8 +58,14 @@ public class TicketServiceImpl implements TicketService {
 	public int addTicket(MultipartFile file, Ticket ticket) throws IOException {
 
 		try {
-			ticketRepository.save(ticket);
-			System.out.println("TicketId"+ticket.getTicketId());
+
+			// ticketRepository.save(ticket);
+			// System.out.println("TicketId"+ticket.getTicketId());
+
+			String address = revGeoCodeService.reverseGeocode(ticket.getLatitude(), ticket.getLongitude());
+			ticket.setAddress(address);
+			mongoTemplate.save(ticket);
+
 			fileUploaderAsyncService.async(file, "", ticket.getUsername(), ticket.getDate(), ticket.getTicketId());
 		} catch (AmazonServiceException ase) {
 			ase.printStackTrace();
@@ -65,7 +75,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public List<Ticket> getTicketsForUser(String userName) {
-		
+
 		Criteria userCrit = Criteria.where("username").is(userName);
 		Query query = Query.query(userCrit);
 		List<Ticket> ticketList = mongoTemplate.find(query, Ticket.class);
@@ -93,6 +103,5 @@ public class TicketServiceImpl implements TicketService {
 	public void updateTicket(Ticket ticket) {
 		ticketRepository.save(ticket);
 	}
-
 
 }

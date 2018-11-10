@@ -32,7 +32,7 @@ public class FileUploaderAsyncService {
 
 	// public static Logger logger = (Logger)
 	// LogManager.getLogger(FileUploaderAsyncService.class);
-	
+
 	@Autowired
 	MongoTemplate mongoTemplate;
 
@@ -40,7 +40,8 @@ public class FileUploaderAsyncService {
 	private AmazonS3Config awsS3Config;
 
 	@Async("fileUploader")
-	public CompletableFuture<Void> async(MultipartFile file, String ticket,String userName,Date date,String id) throws IOException {
+	public CompletableFuture<Void> async(MultipartFile file, String ticket, String userName, Date date, String id)
+			throws IOException {
 		InputStream stream = null;
 		String url = null;
 		try {
@@ -57,7 +58,7 @@ public class FileUploaderAsyncService {
 			ObjectMetadata objMetData = new ObjectMetadata();
 			objMetData.setContentLength(bytes.length);
 			objMetData.setContentType("video/jpeg");
-			String key = userName + "/" +getDate(date) + "/" + fileName;
+			String key = userName + "/" + getDate(date) + "/" + fileName;
 			Long time = System.currentTimeMillis();
 
 			amazonS3.putObject(new PutObjectRequest(awsS3Config.getBucketName(), key, stream, objMetData)
@@ -73,17 +74,16 @@ public class FileUploaderAsyncService {
 			// GeneratePresignedUrlRequest(awsS3Config.getBucketName(), key,
 			// HttpMethod.PUT)).toString();
 			url = String.valueOf(amazonS3.getUrl(awsS3Config.getBucketName(), key));
-			//ticket.getLinks().add(url);
+			// ticket.getLinks().add(url);
 			System.out.println("File uploaded to S3+++++++++++");
 			Ticket ticketData = mongoTemplate.findById(id, Ticket.class);
 			System.out.println(ticketData.getTicketId());
 			System.out.println("File uploaded to S3");
 			ticketData.setLink(url);
 			System.out.println(ticketData.getLink());
-			
+
 			mongoTemplate.save(ticketData);
-			
-		    
+
 			System.out.println(url);
 
 			stream.close();
@@ -97,6 +97,7 @@ public class FileUploaderAsyncService {
 		return CompletableFuture.completedFuture(null);
 
 	}
+
 	public String getDate(Date date) {
 		String strDate = new SimpleDateFormat("yyyy/MM/DD HH:mm:ss").format(date);
 		System.out.println(strDate.substring(0, 10));

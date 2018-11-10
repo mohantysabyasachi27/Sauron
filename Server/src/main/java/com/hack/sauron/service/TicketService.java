@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hack.sauron.models.Ticket;
 
 public interface TicketService {
-	
+
 	public int addTicket(MultipartFile multipartFile, Ticket ticket) throws IOException;
 
 	public List<Ticket> getTicketsForUser(String userName);
@@ -19,5 +19,5 @@ public interface TicketService {
 	public void updateTicket(Ticket ticket);
 
 	List<Ticket> getTicketsWithinRadius(Double lat, Double lon, Double radius, Date startDate, Boolean isPending);
-	
+
 }
