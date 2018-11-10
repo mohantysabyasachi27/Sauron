@@ -22,6 +22,12 @@ import org.springframework.web.client.RestTemplate;
 import com.hack.sauron.security.handlers.SpringLogoutSuccessHandler;
 import com.hack.sauron.security.handlers.SpringSecurityUserLoginService;
 import com.hack.sauron.security.handlers.UserLoginService;
+import com.hack.sauron.service.CacheService;
+import com.hack.sauron.service.CacheServiceImpl;
+import com.hack.sauron.service.ReverseGeocodeService;
+import com.hack.sauron.service.ReverseGeocodeServiceImpl;
+import com.hack.sauron.service.UserService;
+import com.hack.sauron.service.UserServiceImpl;
 import com.mongodb.MongoClient;
 
 @Configuration
@@ -48,6 +54,21 @@ public class SauronConfig {
 		return new SpringSecurityUserLoginService();
 	}
 
+	@Bean
+	public ReverseGeocodeService reverseGeocodeService() {
+		return new ReverseGeocodeServiceImpl();
+	}
+	
+	@Bean
+	public UserService userService() {
+		return new UserServiceImpl();
+	}
+	
+	@Bean
+	public CacheService cacheService() {
+		return new CacheServiceImpl();
+	}
+	
 	@Bean
 	public RestTemplate restTemlate() {
 		return new RestTemplate();
