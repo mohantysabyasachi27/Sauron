@@ -11,9 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.hack.sauron.constants.SauronConstant;
 
-@Document(collection = "UserDetails")
+@Document(collection = "User")
 public class User implements Serializable{
-
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
