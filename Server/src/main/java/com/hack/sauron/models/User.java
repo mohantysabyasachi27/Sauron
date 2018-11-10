@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.hack.sauron.constants.SauronConstant;
@@ -13,9 +14,6 @@ import com.hack.sauron.constants.SauronConstant;
 @Document(collection = "UserDetails")
 public class User implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
@@ -23,26 +21,21 @@ public class User implements Serializable{
 	private String lastName;
 	private Set<Role> roles = new HashSet<>();
 	private String userName;
-	private String userPassword;
-	private String userEmailId;
-	private String userContactNo;
-	private Date userDOB;
-	private String userCity;
-	private String userAddress;
-	private String userPinCode;
+	private String password;
+	@Indexed(name = "emailId_index", unique=true)
+	private String emailId;
+	private String mobile;
+	private String address;
 
 	public User(User user) {
 		super();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
-		this.userName = user.getUserName();
-		this.userPassword = user.getUserPassword();
-		this.userEmailId = user.getUserEmailId();
-		this.userContactNo = user.getUserContactNo();
-		this.userDOB = user.getUserDOB();
-		this.userCity = user.getUserCity();
-		this.userAddress = user.getUserAddress();
-		this.userPinCode = user.getUserPinCode();
+		this.userName = user.getEmailId();
+		this.password = user.getPassword();
+		this.emailId = user.getEmailId();
+		this.mobile = user.getMobile();
+		this.address = user.getAddress();
 		this.roles.add(new Role(SauronConstant.DEFAULT_ROLE_ID, userName));
 	}
 
@@ -52,14 +45,15 @@ public class User implements Serializable{
 		this.roles.add(new Role(SauronConstant.DEFAULT_ROLE_ID, userName));
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userName = userName;
-		this.userPassword = userPassword;
-		this.userEmailId = userEmailId;
-		this.userContactNo = userContactNo;
-		this.userDOB = userDOB;
-		this.userCity = userCity;
-		this.userAddress = userAddress;
-		this.userPinCode = userPinCode;
+		this.userName = userEmailId;
+		this.password = userPassword;
+		this.emailId = userEmailId;
+		this.mobile = userContactNo;
+		this.address = userAddress;
+	}
+
+	public User() {
+
 	}
 
 	public String getId() {
@@ -70,88 +64,20 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getUserPassword() {
-		return userPassword;
-	}
-
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-
-	public String getUserEmailId() {
-		return userEmailId;
-	}
-
-	public void setUserEmailId(String userEmailId) {
-		this.userEmailId = userEmailId;
-	}
-
-	public String getUserContactNo() {
-		return userContactNo;
-	}
-
-	public void setUserContactNo(String userContactNo) {
-		this.userContactNo = userContactNo;
-	}
-
-	public Date getUserDOB() {
-		return userDOB;
-	}
-
-	public void setUserDOB(Date userDOB) {
-		this.userDOB = userDOB;
-	}
-
-	public String getUserCity() {
-		return userCity;
-	}
-
-	public void setUserCity(String userCity) {
-		this.userCity = userCity;
-	}
-
-	public String getUserAddress() {
-		return userAddress;
-	}
-
-	public void setUserAddress(String userAddress) {
-		this.userAddress = userAddress;
-	}
-
-	public String getUserPinCode() {
-		return userPinCode;
-	}
-
-	public void setUserPinCode(String userPinCode) {
-		this.userPinCode = userPinCode;
-	}
-
-	public User() {
-
+	public String getFirstName() {
+		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
 	public String getLastName() {
 		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public Set<Role> getRoles() {
@@ -162,5 +88,51 @@ public class User implements Serializable{
 		this.roles = roles;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", roles=" + roles
+				+ ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", mobile=" + mobile
+				+ ", address=" + address + "]";
+	}
 
 }
