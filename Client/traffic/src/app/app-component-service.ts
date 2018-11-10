@@ -19,6 +19,13 @@ export class AppService {
     let body = res;
     return body || { };
   }
+  login(email: string, password: string): string{
+    return "200";
+    // this.http.post<any>('https://'+ this.endpoint+'.in/api/login', {
+    //   email: email,
+    //   password: password
+    // });
+  }
   getCategories():void{}
 
   postReview():void{}

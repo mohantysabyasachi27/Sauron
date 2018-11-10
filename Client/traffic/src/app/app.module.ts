@@ -17,7 +17,9 @@ import {HistoryComponent}from './history/table.component';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { HttpClientModule } from '@angular/common/http';
 import {AppService} from './app-component-service';
-import { LoginComponent } from './login/login.component'
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { LoginComponent } from './login/login.component'
     TabsComponent,
     VideoModalComponent,
     HistoryComponent,
-    LoginComponent
+    HomeComponent,
+    LoginComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,7 @@ import { LoginComponent } from './login/login.component'
     })
   ],
   providers: [AppService],
-  bootstrap: [AppComponent],
+  bootstrap: [HomeComponent],
   entryComponents: [
     MyDialogComponent,VideoModalComponent
    ]
