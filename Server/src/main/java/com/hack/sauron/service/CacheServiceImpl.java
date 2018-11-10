@@ -3,11 +3,10 @@ package com.hack.sauron.service;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-
-import com.nimbusds.oauth2.sdk.util.StringUtils;
 
 public class CacheServiceImpl implements CacheService {
 

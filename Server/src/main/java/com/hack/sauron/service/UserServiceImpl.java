@@ -16,6 +16,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Boolean addUser(User user) throws Exception {
 		user.setPassword(passwordencoder.encode(user.getPassword()));
+		user.setUserName(user.getEmailId());
 		userRepository.save(user);
 		System.out.println(user.getId());
 		return true;

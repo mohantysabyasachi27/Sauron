@@ -23,6 +23,8 @@ public class Ticket implements Serializable {
 	private Double longitude;
 	private Boolean isVideo;
 	private String links;
+	private String violationType;
+	private String details;
 
 	private Integer status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
 
@@ -32,22 +34,6 @@ public class Ticket implements Serializable {
 	private GeoJson location;
 
 	public Ticket() {
-
-	}
-
-	public Ticket(String id, String username, Date date, Double latitude, Double longitude, Integer status,
-			Boolean isVideo, String link, String address) {
-
-		super();
-		this.ticketId = id;
-		this.address = address;
-		this.username = username;
-		this.date = date;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.setStatus(status);
-		this.isVideo = isVideo;
-		this.location = buildGeoJson();
 
 	}
 
@@ -142,6 +128,22 @@ public class Ticket implements Serializable {
 		this.location = geo;
 		return this.location;
 
+	}
+
+	public String getViolationType() {
+		return violationType;
+	}
+
+	public void setViolationType(String violationType) {
+		this.violationType = violationType;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
 	}
 
 }

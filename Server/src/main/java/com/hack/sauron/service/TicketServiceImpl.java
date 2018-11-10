@@ -53,10 +53,6 @@ public class TicketServiceImpl implements TicketService {
 	public int addTicket(MultipartFile file, Ticket ticket) throws IOException {
 
 		try {
-
-			// ticketRepository.save(ticket);
-			// System.out.println("TicketId"+ticket.getTicketId());
-
 			String address = revGeoCodeService.reverseGeocode(ticket.getLongitude(), ticket.getLatitude());
 			ticket.setAddress(address);
 			ticket.buildGeoJson();

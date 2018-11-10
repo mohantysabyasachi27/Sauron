@@ -3,14 +3,12 @@ package com.hack.sauron.config;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
@@ -20,11 +18,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.hack.sauron.security.handlers.SpringLogoutSuccessHandler;
 import com.hack.sauron.security.handlers.UserAuthenticationFailureHandler;
 import com.hack.sauron.security.handlers.UserAuthenticationSuccessHandler;
-import com.hack.sauron.security.handlers.UserGoogleAuthenticationSuccessHandler;
 
 @EnableWebSecurity
 @Configuration
-@EnableOAuth2Sso
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -36,11 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private SpringLogoutSuccessHandler springLogoutSuccessHandler;
 
-	@Autowired
-	private AuthenticationEntryPoint authEntryPoint;
+/*	@Autowired
+	private AuthenticationEntryPoint authEntryPoint;*/
 
-	@Autowired
+	/*@Autowired
 	private UserGoogleAuthenticationSuccessHandler userGoogleAuthenticationHandler;
+	*/
 	
 	@Autowired
 	private UserAuthenticationFailureHandler userAuthenticationFailureHandler;
@@ -64,13 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.authorizeRequests().antMatchers("/login/**").authenticated().anyRequest().permitAll().and().formLogin()
 				.failureUrl("/login?error").failureHandler(userAuthenticationFailureHandler)
-				.successHandler(userAuthenticationSuccessHandler).permitAll().and().logout()
-				.deleteCookies("MYSESSIONID").invalidateHttpSession(true).logoutUrl("/logout")
-				.logoutSuccessHandler(springLogoutSuccessHandler);
-
-		/*http.httpBasic().realmName("sauron").and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().authorizeRequests()
-				.antMatchers("/users/**").permitAll().anyRequest().authenticated();*/
+				.successHandler(userAuthenticationSuccessHandler)
+				.permitAll().and().logout()
+				.deleteCookies("MYSESSIONID").invalidateHttpSession(true)
+				.logoutUrl("/logout").logoutSuccessHandler(springLogoutSuccessHandler);
 	}
 
 	@Bean
