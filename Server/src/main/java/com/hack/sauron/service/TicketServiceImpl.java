@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonServiceException;
+import com.hack.sauron.models.ListOfTickets;
 import com.hack.sauron.models.Ticket;
 
 public class TicketServiceImpl implements TicketService {
@@ -32,6 +33,7 @@ public class TicketServiceImpl implements TicketService {
 		Distance distance = new Distance(100, Metrics.KILOMETERS);
 		Circle circle = new Circle(point, distance);
 		Criteria geoCriteria = Criteria.where("location").withinSphere(circle);
+		
 		Query query = Query.query(geoCriteria);
 		return mongoTemplate.find(query, Ticket.class);
 	}
@@ -40,19 +42,24 @@ public class TicketServiceImpl implements TicketService {
 
 		try {
 		
-			mongoTemplate.insert(ticket);
-			fileUploaderAsyncService.async(file, ticket);
+			mongoTemplate.save(ticket);
+			System.out.println("TicketId"+ticket.getTicketId());
+			fileUploaderAsyncService.async(file, "", ticket.getUsername(), ticket.getDate(), ticket.getTicketId());
 		} catch (AmazonServiceException ase) {
 			ase.printStackTrace();
 		}
 		return 200;
 	}
 
-	public String getDate(Date date) {
-		String strDate = new SimpleDateFormat("yyyy/MM/DD HH:mm:ss").format(date);
-		System.out.println(strDate.substring(0, 10));
-		return strDate;
+	@Override
+	public List<Ticket> getTicketsForUser(String userName) {
+		
+		Criteria userCrit = Criteria.where("username").is(userName);
+		Query query = Query.query(userCrit);
+		List<Ticket> ticketList = mongoTemplate.find(query, Ticket.class);
+		return ticketList;
 	}
+
 
 
 }

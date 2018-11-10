@@ -1,7 +1,9 @@
 package com.hack.sauron.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
@@ -13,13 +15,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ticket implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	private String id;
+	private String ticketId;
 	private String username;
 	private Date date;
 	private Double latitude;
 	private Double longitude;
 	private Boolean isVideo;
 	private String isApproved;
+	private String links;
 
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
 	private GeoJsonPoint location;
@@ -28,9 +31,9 @@ public class Ticket implements Serializable {
 		
 	}
 	public Ticket(String id, String username, Date date, Double latitude, Double longitude, String isApproved,
-			Boolean isVideo) {
+			Boolean isVideo,String link) {
 		super();
-		this.id = id;
+		this.ticketId = id;
 		this.username = username;
 		this.date = date;
 		this.latitude = latitude;
@@ -38,9 +41,19 @@ public class Ticket implements Serializable {
 		this.isApproved = isApproved;
 		this.isVideo = isVideo;
 		this.location = new GeoJsonPoint(longitude, latitude);
+	
 
 	}
 
+	public String getLink() {
+		return links;
+	}
+	
+	public void setLink(String link)
+	{
+		links =link;
+	}
+	
 	public Boolean getIsVideo() {
 		return isVideo;
 	}
@@ -49,14 +62,13 @@ public class Ticket implements Serializable {
 		this.isVideo = isVideo;
 	}
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getTicketId() {
+		return ticketId;
 	}
-
+	public void setTicketId(String ticketId) {
+		this.ticketId = ticketId;
+	}
 	public String getUsername() {
 		return username;
 	}

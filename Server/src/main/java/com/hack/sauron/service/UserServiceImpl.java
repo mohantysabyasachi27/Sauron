@@ -12,12 +12,15 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Boolean addUser(User user) throws Exception{
 		userRepository.save(user);
+		System.out.println(user.getId());
 		return true;
 	}
 
 	@Override
 	public Boolean updateUser(User user) {
 		userRepository.save(user);
+		
+		
 		return true;
 	}
 

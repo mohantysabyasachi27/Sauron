@@ -1,9 +1,13 @@
 package com.hack.sauron.controllers;
 
 
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.hack.sauron.models.ListOfTickets;
 import com.hack.sauron.models.Response;
 import com.hack.sauron.models.Ticket;
 import com.hack.sauron.service.TicketService;
@@ -47,4 +51,17 @@ public class TicketController {
 		}
 
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{userName}")
+	public List<Ticket> getTickets(@PathVariable String userName) {
+		
+		if(StringUtils.isNotBlank(userName))
+		return (List<Ticket>) ticketService.getTicketsForUser(userName);
+		else
+			return null;
+		
+	}
+	
+	
+	
 }
