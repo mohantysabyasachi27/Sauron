@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -121,7 +122,7 @@ public class TicketController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<Response> updateTicket(@RequestParam Ticket ticket) {
+	public ResponseEntity<Response> updateTicket(@RequestBody Ticket ticket) {
 		Response response = new Response("200", true, "");
 		try {
 			ticketService.updateTicket(ticket);
