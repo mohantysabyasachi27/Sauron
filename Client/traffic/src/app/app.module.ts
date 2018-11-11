@@ -19,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {AppService} from './app-component-service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { LeftComponentComponent } from './left-component/left-component.component';
+import {MatCardModule} from '@angular/material/card';
+import {ChartsModule} from 'ng2-charts/ng2-charts'
 
 
 @NgModule({
@@ -31,11 +34,13 @@ import { LoginComponent } from './login/login.component';
     HistoryComponent,
     HomeComponent,
     LoginComponent,
+    LeftComponentComponent,
     
     
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,MatButtonModule,
@@ -49,6 +54,7 @@ import { LoginComponent } from './login/login.component';
     MatVideoModule,
     MatInputModule,
     AgmJsMarkerClustererModule,
+    MatCardModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCmyAyyRef26cnaJjNWGxV7u7uDdEL8q6M'
     })

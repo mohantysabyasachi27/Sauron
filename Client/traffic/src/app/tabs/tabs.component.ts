@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material';
+import { HistoryComponent } from '../history/table.component';
+import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-tabs',
@@ -8,7 +11,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TabsComponent {
   index:number=0;
   @Input() prop1:any;
-  test(a){
-    this.index=a.index;
+  @ViewChild(HistoryComponent) history:HistoryComponent;
+  @ViewChild(TableComponent) table:TableComponent;
+  onClick(event:MatTabChangeEvent){
+    this.index=event.index;
+    if(this.index==0)
+    {
+      this.table.ApiHitPending();
+    }
+    else this.history.ApiHitHistory();
   }
 }

@@ -12,8 +12,9 @@ export class LoginComponent  {
   password:string;
   constructor(private router: Router) { }
   OnClick(){
-    console.log(this.email);
-    console.log(this.password);
+    if(this.email=="admin" && this.password=="admin"){
     this.router.navigate(['/dashboard']);
+    }else
+    alert("Wrong combination :please enter again");
   }
 }

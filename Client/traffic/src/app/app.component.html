@@ -1,5 +1,10 @@
+<div class="row">
+<div style="text-align:center" class="col-md-2">
+  <button mat-raised-button color="primary" (click)="openModal()">Review</button>
+</div> 
+<div class="col-md-2">
 <mat-form-field>
-  <mat-select [(value)]="selected" placeholder="Pick Date Here">
+  <mat-select [(value)]="selected" (selectionChange)=onChangeofDropdown(); placeholder="Pick Date Here">
     <mat-option value="1">Past 24 hours</mat-option>
     <mat-option value="2">Past 2 Days</mat-option>
     <mat-option value="5">Past 5 Days</mat-option>
@@ -7,35 +12,19 @@
     <mat-option value="15">Past 15 Days</mat-option>
   </mat-select>
 </mat-form-field>
+</div>
+<h1 style="
+    color: goldenrod;
+">WELCOME THE LORD OF THE ALL SEEING EYE</h1>
+</div>
 
-<p>You selected: {{selected}}</p>
-<div style="text-align:center">
-  <button (click)="openModal()">Open Dialog</button>
-</div> 
-
-
+<div class="row">
+<div class="right-component col-md-3"><app-left-component></app-left-component></div>
+<div class="map-component col-md-9">
 <agm-map [latitude]="lat" [longitude]="lng">
 <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
-     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
-     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
-     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
-     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
-     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
-     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    <agm-marker [latitude]="lat" [longitude]="7.300"></agm-marker>
-     <agm-marker [latitude]="lat" [longitude]="7.409007"></agm-marker>
-
+  <agm-marker  *ngFor="let location of locations" [latitude]="location.Latitude" [longitude]="location.Longitude"></agm-marker>
   </agm-marker-cluster>
 </agm-map>
+</div>
+</div>

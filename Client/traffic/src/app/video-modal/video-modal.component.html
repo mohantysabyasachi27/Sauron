@@ -1,21 +1,29 @@
 
 <h2 mat-dialog-title>{{modalTitle}}</h2>
 <mat-dialog-content>
+<div *ngIf=(isVideo)>
 <mat-video title="My Tutorial Title" [autoplay]="true" [preload]="true"  [download]="false" color="accent" spinner="spin" poster="image.jpg">
-      <source matVideoSource src="https://s3-us-west-2.amazonaws.com/sauron-data/sunny3/1992-03-29T13%3A31%3A00.000/Taiga.mp4"
+      <source matVideoSource src="{{link}}"
        type="video/mp4">
 </mat-video>
- <button mat-button (click)=OnApprove() [mat-dialog-close]="true">Approve</button>
- <button mat-button (click)=OnReject() [mat-dialog-close]="true">Reject</button>
-   <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Leave a comment"></textarea>
-  </mat-form-field>
-  <mat-form-field>
+</div>
+<div *ngIf=!(isVideo)><img src="{{link}}"/></div>
+<div class="row">
+<mat-form-field>
   <mat-select [(ngModel)]="selectedValue" placeholder="Select Category" >
-    <mat-option *ngFor="let d of dropdown" [value]="d.value">{{d.value}}</mat-option>
+    <mat-option *ngFor="let d of dropdown" [value]="d.categoryId">{{d.categoryTitle}}</mat-option>
   </mat-select>
 </mat-form-field>
+<mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Leave a comment" [(ngModel)]="selectedComment"></textarea>
+</mat-form-field>
+<mat-form-field class="example-full-width">
+Plate Number of the defaultee:{{license}}
+</mat-form-field>
+</div>
+ <div class="buttons">
+   <button mat-button (click)=OnApprove() [mat-dialog-close]="true">Approve</button>
+   <button mat-button (click)=OnReject() [mat-dialog-close]="true">Reject</button>
+   <button mat-button [mat-dialog-close]="true">Close</button>
+   </div>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="true" >Close</button>
-</mat-dialog-actions>
