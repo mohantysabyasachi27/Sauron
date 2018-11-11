@@ -17,7 +17,10 @@ import java.util.Base64;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.json.simple.parser.ParseException;
 
 import com.hack.sauron.models.Ticket;
@@ -28,7 +31,7 @@ public class AlprServiceImpl implements AlprService {
 	private final static String publish_key = "pk_c517c0a5223b7a51c688dacb";
 
 	private Path download(String sourceURL) throws IOException {
-		String targetDirectory = "/tmp/" + sourceURL.substring(sourceURL.lastIndexOf('/'));
+		String targetDirectory = "C:\\Users\\kumar\\Documents\\My Adobe Captivate Projects\\" + sourceURL.substring(sourceURL.lastIndexOf('/'));
 		URL url = new URL(sourceURL);
 		String fileName = sourceURL.substring(sourceURL.lastIndexOf('/') + 1, sourceURL.length());
 		Path targetPath = new File(targetDirectory).toPath();
@@ -64,27 +67,26 @@ public class AlprServiceImpl implements AlprService {
 					json_content += inputLine;
 				in.close();
 
-				JSONParser parser = new JSONParser();
+				JsonParser parser = new JsonParser();
 				try {
-					JSONObject json = (JSONObject) parser.parse(json_content);
-					JSONObject objJson = null;
-					if (json.has("results")) {
-						JSONArray resultarr = json.getJSONArray("results");
-						objJson = (JSONObject) resultarr.get(0);
-						ticket.setLicense(objJson.getString("plate"));
+					JsonObject jsonResult = (JsonObject) parser.parse(json_content);
+					JsonObject objJson = null;
+					System.out.println("Got Json");
+					JsonArray resultarr =null;
+					if (jsonResult.has("results")) {
+						System.out.println("Has results");
+						resultarr = jsonResult.getAsJsonArray("results");
+						objJson = (JsonObject) resultarr.get(0);
+						ticket.setLicense(String.valueOf(objJson.get("plate")));
 					}
 
-					if (json.has("make_model")) {
+					
+			
+					System.out.println(ticket.getLicense());
 
-						JSONArray resultarr = json.getJSONArray("make_model");
-						objJson = (JSONObject) resultarr.get(0);
-						ticket.setMakeModel(objJson.getString("plate"));
-
-					}
-
-				} catch (ParseException | JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					//e.printStackTrace();
 				}
 
 				System.out.println(ticket);

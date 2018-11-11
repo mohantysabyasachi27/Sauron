@@ -27,7 +27,7 @@ public class Ticket implements Serializable {
 	private String details;
 
 	private String license;
-	private String makeModel;
+	
 	private String category;
 	private int categoryId;
 	private Double points;
@@ -50,7 +50,7 @@ public class Ticket implements Serializable {
 	public String toString() {
 		return "Ticket [ticketId=" + ticketId + ", username=" + username + ", date=" + date + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", isVideo=" + isVideo + ", links=" + links + ", violationType="
-				+ violationType + ", details=" + details + ", license=" + license + ", makeModel=" + makeModel
+				+ violationType + ", details=" + details + ", license=" + license 
 				+ ", category=" + category + ", categoryId=" + categoryId + ", points=" + points + ", status=" + status
 				+ ", address=" + address + ", location=" + location + "]";
 	}
@@ -212,13 +212,5 @@ public class Ticket implements Serializable {
 	}
 
 
-	public String getMakeModel() {
-		return makeModel;
-	}
-
-
-	public void setMakeModel(String makeModel) {
-		this.makeModel = makeModel;
-	}
 
 }
