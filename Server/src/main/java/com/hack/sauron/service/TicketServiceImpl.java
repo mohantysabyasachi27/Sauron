@@ -98,7 +98,7 @@ public class TicketServiceImpl implements TicketService {
 						if (isPending && t.getStatus() == SauronConstant.PENDING_TICKET) {
 							res.add(t);
 						} else if (!isPending) {
-							res.add(t);
+							//res.add(t);
 						}
 
 					}

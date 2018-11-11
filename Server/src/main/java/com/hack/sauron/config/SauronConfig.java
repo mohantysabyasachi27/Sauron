@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
+import com.hack.sauron.alpr.AlprService;
+import com.hack.sauron.alpr.AlprServiceImpl;
 import com.hack.sauron.security.handlers.SpringLogoutSuccessHandler;
 import com.hack.sauron.security.handlers.SpringSecurityUserLoginService;
 import com.hack.sauron.security.handlers.UserLoginService;
@@ -24,6 +26,12 @@ import com.mongodb.MongoClient;
 
 @Configuration
 public class SauronConfig {
+	
+	
+	@Bean
+	public AlprService alprService() {
+		return new AlprServiceImpl();
+	}
 	
 	@Bean
 	public UserLoginService userLoginService() {

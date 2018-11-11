@@ -26,6 +26,8 @@ public class Ticket implements Serializable {
 	private String violationType;
 	private String details;
 
+	private String license;
+	
 	private String category;
 	private int categoryId;
 	private Double points;
@@ -41,6 +43,16 @@ public class Ticket implements Serializable {
 
 	public Ticket() {
 
+	}
+
+
+	@Override
+	public String toString() {
+		return "Ticket [ticketId=" + ticketId + ", username=" + username + ", date=" + date + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", isVideo=" + isVideo + ", links=" + links + ", violationType="
+				+ violationType + ", details=" + details + ", license=" + license 
+				+ ", category=" + category + ", categoryId=" + categoryId + ", points=" + points + ", status=" + status
+				+ ", address=" + address + ", location=" + location + "]";
 	}
 
 
@@ -188,5 +200,17 @@ public class Ticket implements Serializable {
 	public void setDetails(String details) {
 		this.details = details;
 	}
+
+
+	public String getLicense() {
+		return license;
+	}
+
+
+	public void setLicense(String license) {
+		this.license = license;
+	}
+
+
 
 }

@@ -3,9 +3,7 @@ package com.hack.sauron.service;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +21,9 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.hack.sauron.alpr.AlprService;
 import com.hack.sauron.config.AmazonS3Config;
 import com.hack.sauron.models.Ticket;
-import com.mongodb.Mongo;
 
 @Component
 public class FileUploaderAsyncService {
@@ -38,6 +36,9 @@ public class FileUploaderAsyncService {
 
 	@Autowired
 	private AmazonS3Config awsS3Config;
+
+	@Autowired
+	private AlprService alprService;
 
 	@Async("fileUploader")
 	public CompletableFuture<Void> async(MultipartFile file, String ticket, String userName, Date date, String id)
@@ -75,10 +76,10 @@ public class FileUploaderAsyncService {
 			// HttpMethod.PUT)).toString();
 			url = String.valueOf(amazonS3.getUrl(awsS3Config.getBucketName(), key));
 			// ticket.getLinks().add(url);
-			//System.out.println("File uploaded to S3+++++++++++");
+			// System.out.println("File uploaded to S3+++++++++++");
 			Ticket ticketData = mongoTemplate.findById(id, Ticket.class);
-			//System.out.println(ticketData.getTicketId());
-			//System.out.println("File uploaded to S3");
+			// System.out.println(ticketData.getTicketId());
+			// System.out.println("File uploaded to S3");
 			ticketData.setLink(url);
 			System.out.println(ticketData.getLink());
 
@@ -88,20 +89,23 @@ public class FileUploaderAsyncService {
 
 			stream.close();
 
+			if (!ticketData.getIsVideo())
+				alprService.getLicensePlateFromImages(ticketData, null);
 		} catch (Exception t) {
 			System.out.println("error" + t.getMessage());
 			// logger.debug(t.getMessage());
 		} finally {
 			stream.close();
 		}
+
 		return CompletableFuture.completedFuture(null);
 
 	}
 
-	/*public String getDate(Date date) {
-		String strDate = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss").format(date);
-		System.out.println(strDate);
-		return strDate;
-	}*/
+	/*
+	 * public String getDate(Date date) { String strDate = new
+	 * SimpleDateFormat("yyyy-MM-DD HH:mm:ss").format(date);
+	 * System.out.println(strDate); return strDate; }
+	 */
 
 }
