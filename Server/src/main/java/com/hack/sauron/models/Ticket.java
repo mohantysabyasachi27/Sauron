@@ -32,7 +32,7 @@ public class Ticket implements Serializable {
 	private int categoryId;
 	private Double points;
 
-	private Integer status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
+	private int status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
 
 	private String address;
 
