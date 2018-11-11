@@ -93,6 +93,7 @@ public class TicketController {
 		Response response = new Response("200", true, "");
 		try {
 			ticketService.updateTicket(ticket);
+			
 			return new ResponseEntity<Response>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			response.setStatusCode("500");
