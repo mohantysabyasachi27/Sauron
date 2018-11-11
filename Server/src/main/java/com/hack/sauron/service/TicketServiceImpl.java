@@ -14,6 +14,7 @@ import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonServiceException;
@@ -86,13 +87,15 @@ public class TicketServiceImpl implements TicketService {
 			if (admin.getIsAdmin()) {
 				List<Ticket> list = getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 10.0,
 						startDate, isPending);
-				for (Ticket t : list) {
-					if (isPending && t.getStatus() == SauronConstant.PENDING_TICKET) {
-						res.add(t);
-					} else if (!isPending) {
-						res.add(t);
-					}
+				if(!CollectionUtils.isEmpty(list)) {
+					for (Ticket t : list) {
+						if (isPending && t.getStatus() == SauronConstant.PENDING_TICKET) {
+							res.add(t);
+						} else if (!isPending) {
+							res.add(t);
+						}
 
+					}
 				}
 			}
 			return res;
