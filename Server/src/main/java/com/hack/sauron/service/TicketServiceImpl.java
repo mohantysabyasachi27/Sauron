@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Circle;
@@ -112,6 +114,23 @@ public class TicketServiceImpl implements TicketService {
 		user.setTotalPoints(user.getTotalPoints() + points);
 		mongoTemplate.save(user, "User");
 		ticketRepository.save(ticket);
+	}
+
+	@Override
+	public Map<String, List<Ticket>> getTicketData() {
+
+		Map<String, List<Ticket>> mapTickets = new HashMap<>();
+		Criteria userCrit = Criteria.where("status").is(1);
+		Query query = Query.query(userCrit);
+
+		List<Ticket> approvedTickets = mongoTemplate.find(query, Ticket.class, "Ticket");
+		List<Ticket> allTickets = mongoTemplate.findAll(Ticket.class, "Ticket");
+
+		mapTickets.put("Approved", approvedTickets);
+		mapTickets.put("All", allTickets);
+
+		return mapTickets;
+
 	}
 
 }

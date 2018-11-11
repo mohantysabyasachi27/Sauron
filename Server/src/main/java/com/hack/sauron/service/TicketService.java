@@ -3,6 +3,7 @@ package com.hack.sauron.service;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,9 @@ public interface TicketService {
 
 	public void updateTicket(Ticket ticket);
 
-	List<Ticket> getTicketsWithinRadius(Double lat, Double lon, Double radius, Date startDate, Boolean isPending);
+	public List<Ticket> getTicketsWithinRadius(Double lat, Double lon, Double radius, Date startDate, Boolean isPending);
+	
+	public Map<String,List<Ticket>> getTicketData();
+	
 
 }

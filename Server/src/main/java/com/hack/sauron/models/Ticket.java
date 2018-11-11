@@ -37,13 +37,7 @@ public class Ticket implements Serializable {
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
 	private GeoJson location;
 
-	public int getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
+	
 
 	public Ticket() {
 
@@ -61,7 +55,14 @@ public class Ticket implements Serializable {
 	 * 
 	 * }
 	 */
+	public int getCategoryId() {
+		return categoryId;
+	}
 
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+	
 	public Double getPoints() {
 		return points;
 	}
