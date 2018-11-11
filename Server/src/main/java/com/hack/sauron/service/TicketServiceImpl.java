@@ -90,7 +90,7 @@ public class TicketServiceImpl implements TicketService {
 		try {
 			admin = userService.getUser(adminUserId);
 			List<Ticket> res = new ArrayList<>();
-			if (admin.getIsAdmin()) {
+			if (admin!=null && admin.getIsAdmin()) {
 				List<Ticket> list = getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 10.0,
 						startDate, isPending);
 				if(!CollectionUtils.isEmpty(list)) {
