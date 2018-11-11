@@ -14,15 +14,9 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.json.simple.parser.ParseException;
-
 import com.hack.sauron.models.Ticket;
 
 public class AlprServiceImpl implements AlprService {
@@ -31,7 +25,7 @@ public class AlprServiceImpl implements AlprService {
 	private final static String publish_key = "pk_c517c0a5223b7a51c688dacb";
 
 	private Path download(String sourceURL) throws IOException {
-		String targetDirectory = "C:\\Users\\kumar\\Documents\\My Adobe Captivate Projects\\" + sourceURL.substring(sourceURL.lastIndexOf('/'));
+		String targetDirectory = "/tmp/" + sourceURL.substring(sourceURL.lastIndexOf('/'));
 		URL url = new URL(sourceURL);
 		String fileName = sourceURL.substring(sourceURL.lastIndexOf('/') + 1, sourceURL.length());
 		Path targetPath = new File(targetDirectory).toPath();
