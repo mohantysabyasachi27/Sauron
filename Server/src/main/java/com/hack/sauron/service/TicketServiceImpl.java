@@ -38,7 +38,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserRepository userRepo;
 
@@ -55,6 +55,10 @@ public class TicketServiceImpl implements TicketService {
 		Circle circle = new Circle(point, distance);
 		Criteria geoCriteria = Criteria.where("location").withinSphere(circle);
 		geoCriteria.and("date").gte(startDate);
+		if (isPending)
+			geoCriteria.and("status").is(2);
+		else
+			geoCriteria.and("status").ne(2);
 		Query query = Query.query(geoCriteria);
 		return mongoTemplate.find(query, Ticket.class);
 	}
@@ -90,16 +94,13 @@ public class TicketServiceImpl implements TicketService {
 		try {
 			admin = userService.getUser(adminUserId);
 			List<Ticket> res = new ArrayList<>();
-			if (admin!=null && admin.getIsAdmin()) {
+			if (admin != null && admin.getIsAdmin()) {
 				List<Ticket> list = getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 10.0,
 						startDate, isPending);
-				if(!CollectionUtils.isEmpty(list)) {
+				if (!CollectionUtils.isEmpty(list)) {
 					for (Ticket t : list) {
-						if (isPending && t.getStatus() == SauronConstant.PENDING_TICKET) {
-							res.add(t);
-						} else if (!isPending) {
-							//res.add(t);
-						}
+
+						res.add(t);
 
 					}
 				}
@@ -107,7 +108,8 @@ public class TicketServiceImpl implements TicketService {
 			return res;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			//e.printStackTrace();
 		}
 		return Collections.<Ticket>emptyList();
 	}
@@ -117,13 +119,15 @@ public class TicketServiceImpl implements TicketService {
 
 		Double points = categoryConfig.getPointsData().get(ticket.getCategoryId());
 		ticket.setPoints(points);
-		/*Criteria crit = Criteria.where("username").is(ticket.getUsername());
-		Query query = Query.query(crit);*/
+		/*
+		 * Criteria crit = Criteria.where("username").is(ticket.getUsername()); Query
+		 * query = Query.query(crit);
+		 */
 		User user = userRepo.findByUserName(ticket.getUsername());
-		if(null!=user) {
-		user.setTotalPoints(user.getTotalPoints() + points);
-		mongoTemplate.save(user, "User");
-		
+		if (null != user) {
+			user.setTotalPoints(user.getTotalPoints() + points);
+			mongoTemplate.save(user, "User");
+
 		}
 		ticketRepository.save(ticket);
 	}
@@ -138,12 +142,12 @@ public class TicketServiceImpl implements TicketService {
 		List<Ticket> approvedTickets = mongoTemplate.find(query, Ticket.class, "Ticket");
 		List<Ticket> allTickets = mongoTemplate.findAll(Ticket.class, "Ticket");
 
-		if(null!=approvedTickets)
-		mapTickets.put("Approved", approvedTickets.size());
+		if (null != approvedTickets)
+			mapTickets.put("Approved", approvedTickets.size());
 		else
 			mapTickets.put("Approved", 0);
-		if(null!=approvedTickets)
-		mapTickets.put("All", allTickets.size());
+		if (null != approvedTickets)
+			mapTickets.put("All", allTickets.size());
 		else
 			mapTickets.put("Approved", 0);
 
