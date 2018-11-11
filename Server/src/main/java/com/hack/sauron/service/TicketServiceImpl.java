@@ -129,17 +129,23 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public Map<String, List<Ticket>> getTicketData() {
+	public Map<String, Integer> getTicketData() {
 
-		Map<String, List<Ticket>> mapTickets = new HashMap<>();
+		Map<String, Integer> mapTickets = new HashMap<>();
 		Criteria userCrit = Criteria.where("status").is(1);
 		Query query = Query.query(userCrit);
 
 		List<Ticket> approvedTickets = mongoTemplate.find(query, Ticket.class, "Ticket");
 		List<Ticket> allTickets = mongoTemplate.findAll(Ticket.class, "Ticket");
 
-		mapTickets.put("Approved", approvedTickets);
-		mapTickets.put("All", allTickets);
+		if(null!=approvedTickets)
+		mapTickets.put("Approved", approvedTickets.size());
+		else
+			mapTickets.put("Approved", 0);
+		if(null!=approvedTickets)
+		mapTickets.put("All", allTickets.size());
+		else
+			mapTickets.put("Approved", 0);
 
 		return mapTickets;
 

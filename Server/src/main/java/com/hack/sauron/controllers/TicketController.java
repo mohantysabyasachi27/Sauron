@@ -137,7 +137,7 @@ public class TicketController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/aggregate")
-	public Map<String, List<Ticket>> getTicketAll() {
+	public Map<String, Integer> getTicketAll() {
 		return ticketService.getTicketData();
 	}
 

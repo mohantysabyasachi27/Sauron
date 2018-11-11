@@ -21,7 +21,7 @@ public interface TicketService {
 
 	public List<Ticket> getTicketsWithinRadius(Double lat, Double lon, Double radius, Date startDate, Boolean isPending);
 	
-	public Map<String,List<Ticket>> getTicketData();
+	public Map<String,Integer> getTicketData();
 	
 
 }
