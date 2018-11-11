@@ -66,7 +66,7 @@ public class SauronConfig {
 	}
 
 	@Bean
-	public PasswordEncoder passwordencoder() {
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 

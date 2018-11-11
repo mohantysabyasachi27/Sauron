@@ -11,11 +11,11 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private PasswordEncoder passwordencoder;
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public Boolean addUser(User user) throws Exception {
-		user.setPassword(passwordencoder.encode(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setUserName(user.getEmailId());
 		user.setTotalPoints(0.0);
 		userRepository.save(user);

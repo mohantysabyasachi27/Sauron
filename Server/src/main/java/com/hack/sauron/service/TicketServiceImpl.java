@@ -38,6 +38,9 @@ public class TicketServiceImpl implements TicketService {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Autowired
 	private TicketRepository ticketRepository;
@@ -114,9 +117,14 @@ public class TicketServiceImpl implements TicketService {
 
 		Double points = categoryConfig.getPointsData().get(ticket.getCategoryId());
 		ticket.setPoints(points);
-		User user = mongoTemplate.findById(ticket.getUsername(), User.class, "User");
+		/*Criteria crit = Criteria.where("username").is(ticket.getUsername());
+		Query query = Query.query(crit);*/
+		User user = userRepo.findByUserName(ticket.getUsername());
+		if(null!=user) {
 		user.setTotalPoints(user.getTotalPoints() + points);
 		mongoTemplate.save(user, "User");
+		
+		}
 		ticketRepository.save(ticket);
 	}
 

@@ -42,6 +42,9 @@ public class UserController {
 	public @ResponseBody ResponseEntity<Response> addUser(@RequestBody User user) {
 		logger.info("Entering the Register User Method", user);
 		Boolean response;
+		if(null==user)
+			System.out.println("Null");
+			
 		try {
 			response = userService.addUser(user);
 		} catch (Exception e) {
