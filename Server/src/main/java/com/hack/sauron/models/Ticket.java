@@ -42,6 +42,16 @@ public class Ticket implements Serializable {
 	}
 
 
+	public int getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
 	private int status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
 
 	private String address;
@@ -159,13 +169,7 @@ public class Ticket implements Serializable {
 	}
 
 
-	public Integer getStatus() {
-		return status;
-	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
 
 	public GeoJson buildGeoJson() {
 

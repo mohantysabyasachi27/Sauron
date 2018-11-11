@@ -58,7 +58,7 @@ public class TicketServiceImpl implements TicketService {
 		if (isPending)
 			geoCriteria.and("status").is(2);
 		else
-			geoCriteria.and("status").ne(2);
+			geoCriteria.and("status").in(0,1);
 		Query query = Query.query(geoCriteria);
 		return mongoTemplate.find(query, Ticket.class);
 	}
@@ -95,7 +95,7 @@ public class TicketServiceImpl implements TicketService {
 			admin = userService.getUser(adminUserId);
 			List<Ticket> list = new ArrayList<>();
 			if (admin != null && admin.getIsAdmin()) {
-				list = getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 10.0,
+				list = getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 100.0,
 						startDate, isPending);
 			}
 			return list;
