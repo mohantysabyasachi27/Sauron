@@ -206,11 +206,18 @@ extension ViewController{
             let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
             let fileName = imageURL.lastPathComponent
             let user = Authentication.shared.user
-            let parameters: String = "{\"username\":\(user?.emailId ?? "anonymous"),\"latitude\":\(coordinate.latitude),\"longitude\":\(coordinate.longitude),\"date\":\(Date()),\"isVideo\":\"false\"}"
+            let parameters: [String:String] = [
+                "username" : user?.emailId ?? "anonymous",
+                "latitude"  : String(coordinate.latitude),
+                "longitude" : String(coordinate.longitude),
+                "date"  : Date().toString(dateFormat: "yyyy-MM-dd"),
+                "isVideo": "false"
+            ]
 
             Alamofire.upload(multipartFormData: { (multipartFormData) in
                 multipartFormData.append(imageData, withName: "file", fileName: fileName ?? "image_file.jpeg", mimeType: "image/jpeg")
-            }, to:Constants.ticket)
+                multipartFormData.append((parameters.description).data(using: .utf8)!, withName: "ticketData")
+            }, to:Constants.ticket, headers: ["Content-Type": "application/x-www-form-urlencoded"])
             { (result) in
                 switch result {
                 case .success(let upload, _, _):
@@ -240,6 +247,51 @@ extension ViewController{
             }
         }
     }
+    
+    func uploadVideo(_ data: Data) {
+//        let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
+//        let fileName = imageURL.lastPathComponent
+        let user = Authentication.shared.user
+        let parameters: [String:String] = [
+            "username" : user?.emailId ?? "anonymous",
+            "latitude"  : String(coordinate.latitude),
+            "longitude" : String(coordinate.longitude),
+            "date"  : Date().toString(dateFormat: "yyyy-MM-dd"),
+            "isVideo": "true"
+        ]
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(data, withName: "file", fileName: "video.mov", mimeType: "video/mov")
+            multipartFormData.append((parameters.description).data(using: .utf8)!, withName: "ticketData")
+        }, to:Constants.ticket, headers: ["Content-Type": "application/x-www-form-urlencoded"])
+        { (result) in
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (Progress) in
+                    print("Upload Progress: \(Progress.fractionCompleted)")
+                })
+                
+                upload.responseJSON { response in
+                    //self.delegate?.showSuccessAlert()
+                    print(response.request)  // original URL request
+                    print(response.response) // URL response
+                    print(response.data)     // server data
+                    print(response.result)   // result of response serialization
+                    //                        self.showSuccesAlert()
+                    //self.removeImage("frame", fileExtension: "txt")
+                    if let JSON = response.result.value {
+                        print("JSON: \(JSON)")
+                    }
+                }
+                
+            case .failure(let encodingError):
+                //self.delegate?.showFailAlert()
+                print(encodingError)
+            }
+            
+        }
+    }
 }
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -253,16 +305,16 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             self.uploadImage(image: image, info: info)
             print("in  image")
 
-        } else{
-            print("Something went wrong in  image")
-        }
-        
-        if let videoUrl = info[.mediaURL] as? NSURL{
+        } else if let videoUrl = info[.mediaURL] as? NSURL{
             print("videourl: ", videoUrl)
             //trying compression of video
-            let data = NSData(contentsOf: videoUrl as URL)!
-            print("File size before compression: \(Double(data.length / 1048576)) mb")
-            compressWithSessionStatusFunc(videoUrl)
+            do {
+                let data = try Data(contentsOf: videoUrl as URL)
+                print("File size before compression: \(Double(data.count / 1048576)) mb")
+                compressWithSessionStatusFunc(videoUrl)
+            } catch {
+                
+            }
         }
         else{
             print("Something went wrong in  video")
@@ -286,13 +338,16 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             case .exporting:
                 break
             case .completed:
-                guard let compressedData = NSData(contentsOf: compressedURL) else {
-                    return
-                }
-                print("File size after compression: \(Double(compressedData.length / 1048576)) mb")
-                
-                DispatchQueue.main.async {
-//                    self.videoPickedBlock?(compressedURL as NSURL)
+                do {
+                    let compressedData = try Data(contentsOf: compressedURL)
+                    print("File size after compression: \(Double(compressedData.count / 1048576)) mb")
+                    
+                    DispatchQueue.main.async {
+                        //                    self.videoPickedBlock?(compressedURL as NSURL)
+                        self.uploadVideo(compressedData)
+                    }
+                } catch {
+                    
                 }
                 
             case .failed:

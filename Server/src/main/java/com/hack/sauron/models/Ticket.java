@@ -1,60 +1,86 @@
 package com.hack.sauron.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.hack.sauron.constants.SauronConstant;
 
 @Document(collection = "Ticket")
 public class Ticket implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	private String id;
+	private String ticketId;
 	private String username;
 	private Date date;
 	private Double latitude;
 	private Double longitude;
 	private Boolean isVideo;
-	private String isApproved;
+	private String links;
+
+	private Integer status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
+
+	private String address;
 
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
-	private GeoJsonPoint location;
+	private GeoJson location;
 
 	public Ticket() {
-		
+
 	}
-	public Ticket(String id, String username, Date date, Double latitude, Double longitude, String isApproved,
-			Boolean isVideo) {
+
+	public Ticket(String id, String username, Date date, Double latitude, Double longitude, Integer status,
+			Boolean isVideo, String link, String address) {
+
 		super();
-		this.id = id;
+		this.ticketId = id;
+		this.address = address;
 		this.username = username;
 		this.date = date;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.isApproved = isApproved;
+		this.setStatus(status);
 		this.isVideo = isVideo;
-		this.location = new GeoJsonPoint(longitude, latitude);
+		this.location = buildGeoJson();
 
+	}
+
+	public String getLink() {
+		return links;
+	}
+
+	public void setLink(String link) {
+		links = link;
 	}
 
 	public Boolean getIsVideo() {
 		return isVideo;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public void setIsVideo(Boolean isVideo) {
 		this.isVideo = isVideo;
 	}
 
-	public String getId() {
-		return id;
+	public String getTicketId() {
+		return ticketId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setTicketId(String ticketId) {
+		this.ticketId = ticketId;
 	}
 
 	public String getUsername() {
@@ -89,20 +115,33 @@ public class Ticket implements Serializable {
 		this.longitude = longitude;
 	}
 
-	public String getIsApproved() {
-		return isApproved;
+	public String getLinks() {
+		return links;
 	}
 
-	public void setIsApproved(String isApproved) {
-		this.isApproved = isApproved;
+	public void setLinks(String links) {
+		this.links = links;
 	}
 
-	public GeoJsonPoint getLocation() {
-		return location;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setLocation(GeoJsonPoint location) {
-		this.location = location;
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public GeoJson buildGeoJson() {
+
+		GeoJson geo = new GeoJson();
+		geo.setType("Point");
+		List<Double> list = new ArrayList<>();
+		list.add(longitude);
+		list.add(latitude);
+		geo.setCoordinates(list);
+		this.location = geo;
+		return this.location;
+
 	}
 
 }

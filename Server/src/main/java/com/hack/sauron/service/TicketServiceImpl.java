@@ -1,7 +1,8 @@
 package com.hack.sauron.service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -16,22 +17,35 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonServiceException;
+import com.hack.sauron.constants.SauronConstant;
 import com.hack.sauron.models.Ticket;
+import com.hack.sauron.models.User;
 
 public class TicketServiceImpl implements TicketService {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
+
 	@Autowired
 	private FileUploaderAsyncService fileUploaderAsyncService;
 
+	@Autowired
+	private ReverseGeocodeService revGeoCodeService;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private TicketRepository ticketRepository;
+
 	@Override
-	public List<Ticket> getTicketsWithinRadius(Double lat, Double lon, int radius) {
+	public List<Ticket> getTicketsWithinRadius(Double lat, Double lon, Double radius, Date startDate,
+			Boolean isPending) {
 		Point point = new Point(lon, lat);
-		Distance distance = new Distance(100, Metrics.KILOMETERS);
+		Distance distance = new Distance(radius, Metrics.KILOMETERS);
 		Circle circle = new Circle(point, distance);
 		Criteria geoCriteria = Criteria.where("location").withinSphere(circle);
+		geoCriteria.and("date").gte(startDate);
 		Query query = Query.query(geoCriteria);
 		return mongoTemplate.find(query, Ticket.class);
 	}
@@ -39,20 +53,60 @@ public class TicketServiceImpl implements TicketService {
 	public int addTicket(MultipartFile file, Ticket ticket) throws IOException {
 
 		try {
-		
-			mongoTemplate.insert(ticket);
-			fileUploaderAsyncService.async(file, ticket);
+
+			// ticketRepository.save(ticket);
+			// System.out.println("TicketId"+ticket.getTicketId());
+
+			String address = revGeoCodeService.reverseGeocode(ticket.getLongitude(), ticket.getLatitude());
+			ticket.setAddress(address);
+			ticket.buildGeoJson();
+			mongoTemplate.save(ticket);
+
+			fileUploaderAsyncService.async(file, "", ticket.getUsername(), ticket.getDate(), ticket.getTicketId());
 		} catch (AmazonServiceException ase) {
 			ase.printStackTrace();
 		}
 		return 200;
 	}
 
-	public String getDate(Date date) {
-		String strDate = new SimpleDateFormat("yyyy/MM/DD HH:mm:ss").format(date);
-		System.out.println(strDate.substring(0, 10));
-		return strDate;
+	@Override
+	public List<Ticket> getTicketsForUser(String userName) {
+
+		Criteria userCrit = Criteria.where("username").is(userName);
+		Query query = Query.query(userCrit);
+		List<Ticket> ticketList = mongoTemplate.find(query, Ticket.class);
+		return ticketList;
 	}
 
+	@Override
+	public List<Ticket> getTickets(String adminUserId, Date startDate, Boolean isPending) {
+		User admin;
+		try {
+			admin = userService.getUser(adminUserId);
+			List<Ticket> res = new ArrayList<>();
+			if (admin.getIsAdmin()) {
+				List<Ticket> list = getTicketsWithinRadius(admin.getOfficeLatLng()[0], admin.getOfficeLatLng()[1], 10.0,
+						startDate, isPending);
+				for (Ticket t : list) {
+					if (isPending && t.getStatus() == SauronConstant.PENDING_TICKET) {
+						res.add(t);
+					} else if (!isPending) {
+						res.add(t);
+					}
+
+				}
+			}
+			return res;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Collections.<Ticket>emptyList();
+	}
+
+	@Override
+	public void updateTicket(Ticket ticket) {
+		ticketRepository.save(ticket);
+	}
 
 }

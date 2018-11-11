@@ -3,9 +3,13 @@ package com.hack.sauron.service;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +25,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.hack.sauron.config.AmazonS3Config;
 import com.hack.sauron.models.Ticket;
+import com.mongodb.Mongo;
 
 @Component
 public class FileUploaderAsyncService {
@@ -29,10 +34,14 @@ public class FileUploaderAsyncService {
 	// LogManager.getLogger(FileUploaderAsyncService.class);
 
 	@Autowired
+	MongoTemplate mongoTemplate;
+
+	@Autowired
 	private AmazonS3Config awsS3Config;
 
 	@Async("fileUploader")
-	public CompletableFuture<Void> async(MultipartFile file, Ticket ticket) throws IOException {
+	public CompletableFuture<Void> async(MultipartFile file, String ticket, String userName, Date date, String id)
+			throws IOException {
 		InputStream stream = null;
 		String url = null;
 		try {
@@ -45,11 +54,11 @@ public class FileUploaderAsyncService {
 					.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
 			String fileName = file.getOriginalFilename();
 			stream = new ByteArrayInputStream(bytes);
-			System.out.println(ticket.getUsername());
+			System.out.println(userName);
 			ObjectMetadata objMetData = new ObjectMetadata();
 			objMetData.setContentLength(bytes.length);
 			objMetData.setContentType("video/jpeg");
-			String key = ticket.getUsername() + "/" + ticket.getDate() + "/" + fileName;
+			String key = userName + "/" + getDate(date) + "/" + fileName;
 			Long time = System.currentTimeMillis();
 
 			amazonS3.putObject(new PutObjectRequest(awsS3Config.getBucketName(), key, stream, objMetData)
@@ -65,11 +74,21 @@ public class FileUploaderAsyncService {
 			// GeneratePresignedUrlRequest(awsS3Config.getBucketName(), key,
 			// HttpMethod.PUT)).toString();
 			url = String.valueOf(amazonS3.getUrl(awsS3Config.getBucketName(), key));
+			// ticket.getLinks().add(url);
+			//System.out.println("File uploaded to S3+++++++++++");
+			Ticket ticketData = mongoTemplate.findById(id, Ticket.class);
+			//System.out.println(ticketData.getTicketId());
+			//System.out.println("File uploaded to S3");
+			ticketData.setLink(url);
+			System.out.println(ticketData.getLink());
+
+			mongoTemplate.save(ticketData);
+
 			System.out.println(url);
 
 			stream.close();
 
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			System.out.println("error" + t.getMessage());
 			// logger.debug(t.getMessage());
 		} finally {
@@ -77,6 +96,12 @@ public class FileUploaderAsyncService {
 		}
 		return CompletableFuture.completedFuture(null);
 
+	}
+
+	public String getDate(Date date) {
+		String strDate = new SimpleDateFormat("yyyy/MM/DD HH:mm:ss").format(date);
+		System.out.println(strDate.substring(0, 10));
+		return strDate;
 	}
 
 }
