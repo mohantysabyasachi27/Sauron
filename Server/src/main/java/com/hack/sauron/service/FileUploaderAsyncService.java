@@ -83,14 +83,14 @@ public class FileUploaderAsyncService {
 			ticketData.setLink(url);
 			System.out.println(ticketData.getLink());
 
-			mongoTemplate.save(ticketData);
-
 			System.out.println(url);
 
 			stream.close();
 
 			if (!ticketData.getIsVideo())
 				alprService.getLicensePlateFromImages(ticketData, null);
+
+			mongoTemplate.save(ticketData);
 		} catch (Exception t) {
 			System.out.println("error" + t.getMessage());
 			// logger.debug(t.getMessage());
