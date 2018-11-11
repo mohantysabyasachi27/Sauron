@@ -61,6 +61,7 @@ public class TicketServiceImpl implements TicketService {
 		try {
 			String address = revGeoCodeService.reverseGeocode(ticket.getLongitude(), ticket.getLatitude());
 			ticket.setAddress(address);
+			ticket.setCategory(categoryConfig.getCategoryData().get(ticket.getCategoryId()));
 			ticket.buildGeoJson();
 			mongoTemplate.save(ticket);
 

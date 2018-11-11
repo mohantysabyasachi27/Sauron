@@ -17,8 +17,9 @@ public class UserServiceImpl implements UserService {
 	public Boolean addUser(User user) throws Exception {
 		user.setPassword(passwordencoder.encode(user.getPassword()));
 		user.setUserName(user.getEmailId());
+		user.setTotalPoints(0.0);
 		userRepository.save(user);
-		System.out.println(user.getId());
+		//System.out.println(user.getId());
 		return true;
 	}
 
@@ -31,7 +32,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(String userName) throws Exception {
-		return userRepository.findByEmailId(userName);
+		User user = userRepository.findByEmailId(userName);
+		user.setPassword("");
+		return user ;
 	}
 
 }
