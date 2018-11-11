@@ -57,8 +57,8 @@ public class TicketServiceImpl implements TicketService {
 		geoCriteria.and("date").gte(startDate);
 		if (isPending)
 			geoCriteria.and("status").is(2);
-		else
-			geoCriteria.and("status").ne(2);
+		/*else
+			geoCriteria.and("status").ne(2);*/
 		Query query = Query.query(geoCriteria);
 		return mongoTemplate.find(query, Ticket.class);
 	}
@@ -99,9 +99,10 @@ public class TicketServiceImpl implements TicketService {
 						startDate, isPending);
 				if (!CollectionUtils.isEmpty(list)) {
 					for (Ticket t : list) {
-
-						res.add(t);
-
+						if(!isPending || isPending == null) {
+							if(t.getStatus() != 2 )
+							res.add(t);	
+						}
 					}
 				}
 			}
