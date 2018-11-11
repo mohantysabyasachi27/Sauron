@@ -26,6 +26,10 @@ public class Ticket implements Serializable {
 	private String violationType;
 	private String details;
 
+	private String category;
+	private int categoryId;
+	private Double points;
+
 	private Integer status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
 
 	private String address;
@@ -33,9 +37,47 @@ public class Ticket implements Serializable {
 	@GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
 	private GeoJson location;
 
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public Ticket() {
 
 	}
+
+
+	/*
+	 * public Ticket(String id, String username, Date date, Double latitude, Double
+	 * longitude, Integer status, Boolean isVideo, String link, String address) {
+	 * 
+	 * super(); this.ticketId = id; this.address = address; this.username =
+	 * username; this.date = date; this.latitude = latitude; this.longitude =
+	 * longitude; this.setStatus(status); this.isVideo = isVideo; this.location =
+	 * buildGeoJson();
+	 * 
+	 * }
+	 */
+
+	public Double getPoints() {
+		return points;
+	}
+
+	public void setPoints(Double points) {
+		this.points = points;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 
 	public String getLink() {
 		return links;

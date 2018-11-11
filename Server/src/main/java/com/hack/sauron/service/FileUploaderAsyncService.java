@@ -58,7 +58,7 @@ public class FileUploaderAsyncService {
 			ObjectMetadata objMetData = new ObjectMetadata();
 			objMetData.setContentLength(bytes.length);
 			objMetData.setContentType("video/jpeg");
-			String key = userName + "/" + getDate(date) + "/" + fileName;
+			String key = userName + "/" + date + "/" + fileName;
 			Long time = System.currentTimeMillis();
 
 			amazonS3.putObject(new PutObjectRequest(awsS3Config.getBucketName(), key, stream, objMetData)
@@ -98,10 +98,10 @@ public class FileUploaderAsyncService {
 
 	}
 
-	public String getDate(Date date) {
-		String strDate = new SimpleDateFormat("yyyy/MM/DD HH:mm:ss").format(date);
-		System.out.println(strDate.substring(0, 10));
+	/*public String getDate(Date date) {
+		String strDate = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss").format(date);
+		System.out.println(strDate);
 		return strDate;
-	}
+	}*/
 
 }

@@ -16,6 +16,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
+	
+
 	private String firstName;
 	private String lastName;
 	private Set<Role> roles = new HashSet<>();
@@ -23,6 +25,7 @@ public class User implements Serializable {
 	private String password;
 	private Boolean isAdmin = Boolean.FALSE;
 	private Double[] officeLatLng = new Double[2];
+	private Double totalPoints ;
 
 	@Indexed(name = "emailId_index", unique = true)
 	private String emailId;
@@ -38,6 +41,7 @@ public class User implements Serializable {
 		this.emailId = user.getEmailId();
 		this.mobile = user.getMobile();
 		this.address = user.getAddress();
+		this.totalPoints = user.getTotalPoints();
 		this.roles.add(new Role(SauronConstant.DEFAULT_ROLE_ID, userName));
 	}
 
@@ -153,6 +157,12 @@ public class User implements Serializable {
 		this.officeLatLng = officeLatLng;
 	}
 
-	
+	public Double getTotalPoints() {
+		return totalPoints;
+	}
+
+	public void setTotalPoints(Double totalPoints) {
+		this.totalPoints = totalPoints;
+	}
 
 }

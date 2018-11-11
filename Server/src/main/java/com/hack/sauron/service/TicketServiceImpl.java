@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonServiceException;
+import com.hack.sauron.config.CategoryConfig;
 import com.hack.sauron.constants.SauronConstant;
 import com.hack.sauron.models.Ticket;
 import com.hack.sauron.models.User;
@@ -37,6 +38,8 @@ public class TicketServiceImpl implements TicketService {
 
 	@Autowired
 	private TicketRepository ticketRepository;
+	@Autowired
+	CategoryConfig categoryConfig;
 
 	@Override
 	public List<Ticket> getTicketsWithinRadius(Double lat, Double lon, Double radius, Date startDate,
@@ -102,6 +105,12 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void updateTicket(Ticket ticket) {
+
+		Double points = categoryConfig.getPointsData().get(ticket.getCategoryId());
+		ticket.setPoints(points);
+		User user = mongoTemplate.findById(ticket.getUsername(), User.class, "User");
+		user.setTotalPoints(user.getTotalPoints() + points);
+		mongoTemplate.save(user, "User");
 		ticketRepository.save(ticket);
 	}
 

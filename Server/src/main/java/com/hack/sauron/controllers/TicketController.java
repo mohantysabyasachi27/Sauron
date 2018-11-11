@@ -32,13 +32,21 @@ public class TicketController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Response> regTicket(@RequestParam("file") MultipartFile multipartFile,
-			@RequestParam String ticketData) {
+			@RequestParam Object ticketData) {
 
 		Response response = new Response("200", true, "");
 		ObjectMapper map = new ObjectMapper();
 
+//		System.out.println(ticketData);
+		String data = (String)ticketData;
+	StringBuilder sb = new StringBuilder(data);
+	sb.setCharAt(0, '{');
+	sb.setCharAt(sb.length()-1, '}');
+	data = sb.toString();
+	System.out.println(data);
+		
 		try {
-			Ticket ticket = map.readValue(ticketData.getBytes(), Ticket.class);
+			Ticket ticket = map.readValue(data,Ticket.class);
 			ticketService.addTicket(multipartFile, ticket);
 			return new ResponseEntity<Response>(response, HttpStatus.OK);
 		} catch (Exception e) {
@@ -80,6 +88,7 @@ public class TicketController {
 		Response response = new Response("200", true, "");
 		try {
 			ticketService.updateTicket(ticket);
+			
 			return new ResponseEntity<Response>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			response.setStatusCode("500");

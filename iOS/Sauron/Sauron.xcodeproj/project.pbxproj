@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		239696205D587223B06DFDE8 /* Pods_Sauron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B37C074F791EBE97A72911 /* Pods_Sauron.framework */; };
+		97525DD62196CCB200DF39C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DD52196CCB200DF39C8 /* AppDelegate.swift */; };
+		97525DD82196CCB200DF39C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DD72196CCB200DF39C8 /* ViewController.swift */; };
+		97525DDB2196CCB200DF39C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97525DD92196CCB200DF39C8 /* Main.storyboard */; };
+		97525DDD2196CCB300DF39C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97525DDC2196CCB300DF39C8 /* Assets.xcassets */; };
+		97525DE02196CCB300DF39C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97525DDE2196CCB300DF39C8 /* LaunchScreen.storyboard */; };
+		97525DF02196CCE600DF39C8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DE92196CCE600DF39C8 /* UIColorExtension.swift */; };
+		97525DF12196CCE600DF39C8 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DEB2196CCE600DF39C8 /* TextFieldEffects.swift */; };
+		97525DF22196CCE600DF39C8 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DEC2196CCE600DF39C8 /* MyTextField.swift */; };
+		97525DF32196CCE600DF39C8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DEE2196CCE600DF39C8 /* SignUpViewController.swift */; };
+		97525DF42196CCE600DF39C8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DEF2196CCE600DF39C8 /* LoginViewController.swift */; };
+		97525DF82196D09900DF39C8 /* CustomTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DF72196D09900DF39C8 /* CustomTransitionViewController.swift */; };
+		97525DFA2196D10700DF39C8 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DF92196D10700DF39C8 /* FadeTransition.swift */; };
+		97525DFC2196DDA300DF39C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DFB2196DDA300DF39C8 /* Constants.swift */; };
+		97525DFE2197024400DF39C8 /* AttachmentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DFD2197024400DF39C8 /* AttachmentHandler.swift */; };
+		97525E0021971C2300DF39C8 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525DFF21971C2300DF39C8 /* ReportViewController.swift */; };
+		97525E02219722BD00DF39C8 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E01219722BD00DF39C8 /* RoundShadowView.swift */; };
+		97525E0521972DBE00DF39C8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E0421972DBE00DF39C8 /* Response.swift */; };
+		97525E07219748A200DF39C8 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E06219748A200DF39C8 /* Authentication.swift */; };
+		97525E092197761800DF39C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E082197761800DF39C8 /* User.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		67E9DA11AC1B4B753184B64B /* Pods-Sauron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sauron.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sauron/Pods-Sauron.release.xcconfig"; sourceTree = "<group>"; };
+		97525DD22196CCB200DF39C8 /* Sauron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sauron.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97525DD52196CCB200DF39C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		97525DD72196CCB200DF39C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		97525DDA2196CCB200DF39C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		97525DDC2196CCB300DF39C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		97525DDF2196CCB300DF39C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		97525DE12196CCB300DF39C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97525DE92196CCE600DF39C8 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		97525DEB2196CCE600DF39C8 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		97525DEC2196CCE600DF39C8 /* MyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
+		97525DEE2196CCE600DF39C8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		97525DEF2196CCE600DF39C8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		97525DF72196D09900DF39C8 /* CustomTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionViewController.swift; sourceTree = "<group>"; };
+		97525DF92196D10700DF39C8 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
+		97525DFB2196DDA300DF39C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		97525DFD2197024400DF39C8 /* AttachmentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
+		97525DFF21971C2300DF39C8 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		97525E01219722BD00DF39C8 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
+		97525E0421972DBE00DF39C8 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		97525E06219748A200DF39C8 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		97525E082197761800DF39C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BA087AB0A5C6AC4B93FB4B6F /* Pods-Sauron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sauron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sauron/Pods-Sauron.debug.xcconfig"; sourceTree = "<group>"; };
+		E7B37C074F791EBE97A72911 /* Pods_Sauron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sauron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97525DCF2196CCB200DF39C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				239696205D587223B06DFDE8 /* Pods_Sauron.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B65BCEE4BB2718A951089E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7B37C074F791EBE97A72911 /* Pods_Sauron.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C189D0A7C7346F8C8DC8E69 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BA087AB0A5C6AC4B93FB4B6F /* Pods-Sauron.debug.xcconfig */,
+				67E9DA11AC1B4B753184B64B /* Pods-Sauron.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		97525DC92196CCB200DF39C8 = {
+			isa = PBXGroup;
+			children = (
+				97525DD42196CCB200DF39C8 /* Sauron */,
+				97525DD32196CCB200DF39C8 /* Products */,
+				2C189D0A7C7346F8C8DC8E69 /* Pods */,
+				0B65BCEE4BB2718A951089E6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		97525DD32196CCB200DF39C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97525DD22196CCB200DF39C8 /* Sauron.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97525DD42196CCB200DF39C8 /* Sauron */ = {
+			isa = PBXGroup;
+			children = (
+				97525E0321972D9F00DF39C8 /* Model */,
+				97525DED2196CCE600DF39C8 /* Registration */,
+				97525DE72196CCE600DF39C8 /* Utils */,
+				97525DD52196CCB200DF39C8 /* AppDelegate.swift */,
+				97525DD72196CCB200DF39C8 /* ViewController.swift */,
+				97525DD92196CCB200DF39C8 /* Main.storyboard */,
+				97525DDC2196CCB300DF39C8 /* Assets.xcassets */,
+				97525DDE2196CCB300DF39C8 /* LaunchScreen.storyboard */,
+				97525DE12196CCB300DF39C8 /* Info.plist */,
+				97525DFF21971C2300DF39C8 /* ReportViewController.swift */,
+			);
+			path = Sauron;
+			sourceTree = "<group>";
+		};
+		97525DE72196CCE600DF39C8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				97525DE82196CCE600DF39C8 /* Extensions */,
+				97525DEA2196CCE600DF39C8 /* CustomComponents */,
+				97525DFB2196DDA300DF39C8 /* Constants.swift */,
+				97525DFD2197024400DF39C8 /* AttachmentHandler.swift */,
+				97525E01219722BD00DF39C8 /* RoundShadowView.swift */,
+			);
+			name = Utils;
+			path = ../../../test/Sauron/Utils;
+			sourceTree = "<group>";
+		};
+		97525DE82196CCE600DF39C8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				97525DE92196CCE600DF39C8 /* UIColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		97525DEA2196CCE600DF39C8 /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				97525DEB2196CCE600DF39C8 /* TextFieldEffects.swift */,
+				97525DEC2196CCE600DF39C8 /* MyTextField.swift */,
+				97525DF72196D09900DF39C8 /* CustomTransitionViewController.swift */,
+				97525DF92196D10700DF39C8 /* FadeTransition.swift */,
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		97525DED2196CCE600DF39C8 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				97525DEE2196CCE600DF39C8 /* SignUpViewController.swift */,
+				97525DEF2196CCE600DF39C8 /* LoginViewController.swift */,
+				97525E06219748A200DF39C8 /* Authentication.swift */,
+			);
+			name = Registration;
+			path = ../../../test/Sauron/Registration;
+			sourceTree = "<group>";
+		};
+		97525E0321972D9F00DF39C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97525E0421972DBE00DF39C8 /* Response.swift */,
+				97525E082197761800DF39C8 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97525DD12196CCB200DF39C8 /* Sauron */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97525DE42196CCB300DF39C8 /* Build configuration list for PBXNativeTarget "Sauron" */;
+			buildPhases = (
+				259EB73847944E76CE866FCB /* [CP] Check Pods Manifest.lock */,
+				97525DCE2196CCB200DF39C8 /* Sources */,
+				97525DCF2196CCB200DF39C8 /* Frameworks */,
+				97525DD02196CCB200DF39C8 /* Resources */,
+				88E12F4A7D96A9EBA996ECA5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sauron;
+			productName = Sauron;
+			productReference = 97525DD22196CCB200DF39C8 /* Sauron.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97525DCA2196CCB200DF39C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Ishan Sarangi";
+				TargetAttributes = {
+					97525DD12196CCB200DF39C8 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 97525DCD2196CCB200DF39C8 /* Build configuration list for PBXProject "Sauron" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 97525DC92196CCB200DF39C8;
+			productRefGroup = 97525DD32196CCB200DF39C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97525DD12196CCB200DF39C8 /* Sauron */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97525DD02196CCB200DF39C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97525DE02196CCB300DF39C8 /* LaunchScreen.storyboard in Resources */,
+				97525DDD2196CCB300DF39C8 /* Assets.xcassets in Resources */,
+				97525DDB2196CCB200DF39C8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		259EB73847944E76CE866FCB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sauron-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88E12F4A7D96A9EBA996ECA5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sauron/Pods-Sauron-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sauron/Pods-Sauron-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97525DCE2196CCB200DF39C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97525DF42196CCE600DF39C8 /* LoginViewController.swift in Sources */,
+				97525DFA2196D10700DF39C8 /* FadeTransition.swift in Sources */,
+				97525DF32196CCE600DF39C8 /* SignUpViewController.swift in Sources */,
+				97525DF22196CCE600DF39C8 /* MyTextField.swift in Sources */,
+				97525E092197761800DF39C8 /* User.swift in Sources */,
+				97525E02219722BD00DF39C8 /* RoundShadowView.swift in Sources */,
+				97525DFE2197024400DF39C8 /* AttachmentHandler.swift in Sources */,
+				97525E0521972DBE00DF39C8 /* Response.swift in Sources */,
+				97525DF82196D09900DF39C8 /* CustomTransitionViewController.swift in Sources */,
+				97525E07219748A200DF39C8 /* Authentication.swift in Sources */,
+				97525DFC2196DDA300DF39C8 /* Constants.swift in Sources */,
+				97525DD82196CCB200DF39C8 /* ViewController.swift in Sources */,
+				97525E0021971C2300DF39C8 /* ReportViewController.swift in Sources */,
+				97525DD62196CCB200DF39C8 /* AppDelegate.swift in Sources */,
+				97525DF12196CCE600DF39C8 /* TextFieldEffects.swift in Sources */,
+				97525DF02196CCE600DF39C8 /* UIColorExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		97525DD92196CCB200DF39C8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97525DDA2196CCB200DF39C8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		97525DDE2196CCB300DF39C8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97525DDF2196CCB300DF39C8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		97525DE22196CCB300DF39C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		97525DE32196CCB300DF39C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		97525DE52196CCB300DF39C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA087AB0A5C6AC4B93FB4B6F /* Pods-Sauron.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2YGRS46T54;
+				INFOPLIST_FILE = Sauron/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ishan.Sauron;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97525DE62196CCB300DF39C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67E9DA11AC1B4B753184B64B /* Pods-Sauron.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2YGRS46T54;
+				INFOPLIST_FILE = Sauron/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ishan.Sauron;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97525DCD2196CCB200DF39C8 /* Build configuration list for PBXProject "Sauron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97525DE22196CCB300DF39C8 /* Debug */,
+				97525DE32196CCB300DF39C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97525DE42196CCB300DF39C8 /* Build configuration list for PBXNativeTarget "Sauron" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97525DE52196CCB300DF39C8 /* Debug */,
+				97525DE62196CCB300DF39C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 97525DCA2196CCB200DF39C8 /* Project object */;
+}

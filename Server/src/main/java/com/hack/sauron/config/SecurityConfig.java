@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.cors();
-		http.authorizeRequests().antMatchers("/login/**").authenticated().anyRequest().permitAll().and().formLogin()
+		http.authorizeRequests().antMatchers("/").authenticated().anyRequest().permitAll().and().formLogin()
 				.failureUrl("/login?error").failureHandler(userAuthenticationFailureHandler)
 				.successHandler(userAuthenticationSuccessHandler)
 				.permitAll().and().logout()
