@@ -16,6 +16,8 @@ Server/*.project
 Server/.mvn/
 Server/*.classpath
 Server/.settings/
+Client/node_modules/
+Client/traffic/node_modules/
 # Package Files #
 *.jar
 *.war
