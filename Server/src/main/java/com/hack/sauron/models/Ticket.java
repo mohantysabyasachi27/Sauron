@@ -22,7 +22,7 @@ public class Ticket implements Serializable {
 	private Double latitude;
 	private Double longitude;
 	private Boolean isVideo;
-	private String links;
+	private String link;
 	private String violationType;
 	private String details;
 
@@ -31,6 +31,16 @@ public class Ticket implements Serializable {
 	private String category;
 	private int categoryId;
 	private Double points;
+
+	public String getLink() {
+		return link;
+	}
+
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
 
 	private int status = SauronConstant.PENDING_TICKET; // pending tickets , 0 for rejected, 1 for approved
 
@@ -49,7 +59,7 @@ public class Ticket implements Serializable {
 	@Override
 	public String toString() {
 		return "Ticket [ticketId=" + ticketId + ", username=" + username + ", date=" + date + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", isVideo=" + isVideo + ", links=" + links + ", violationType="
+				+ ", longitude=" + longitude + ", isVideo=" + isVideo + ", links=" + link + ", violationType="
 				+ violationType + ", details=" + details + ", license=" + license 
 				+ ", category=" + category + ", categoryId=" + categoryId + ", points=" + points + ", status=" + status
 				+ ", address=" + address + ", location=" + location + "]";
@@ -91,14 +101,6 @@ public class Ticket implements Serializable {
 		this.category = category;
 	}
 
-
-	public String getLink() {
-		return links;
-	}
-
-	public void setLink(String link) {
-		links = link;
-	}
 
 	public Boolean getIsVideo() {
 		return isVideo;
@@ -156,13 +158,6 @@ public class Ticket implements Serializable {
 		this.longitude = longitude;
 	}
 
-	public String getLinks() {
-		return links;
-	}
-
-	public void setLinks(String links) {
-		this.links = links;
-	}
 
 	public Integer getStatus() {
 		return status;
