@@ -33,7 +33,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(String userName) throws Exception {
 		User user = userRepository.findByEmailId(userName);
-		user.setPassword("");
+		if(user!=null) {
+			user.setPassword("");	
+		}
 		return user ;
 	}
 
