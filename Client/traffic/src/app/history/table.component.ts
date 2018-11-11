@@ -1,19 +1,10 @@
 import { Component, ViewChild, Input ,SimpleChanges,SimpleChange,OnChanges} from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialogConfig, MatDialog } from '@angular/material';
+import { AppService } from '../app-component-service';
+import { PeriodicElement } from '../PeriodicElement';
 
 
-export interface PeriodicElement {
-  Date: string;
-  UserId: number;
-  Title: number;
-  Address: string;
-  Status:string;
-  Category:string;
-  Comment:string;
-}
 const ELEMENT_DATA: PeriodicElement[] = [
-  {UserId: 1, Date: 'Hydrogen', Title: 1.0079, Address: 'H',Status:'Pending',Category:'ABC',Comment:'Heyhbsrhbsrhv hs ev'},
-  {UserId: 2, Date: 'Helium', Title: 4.0026, Address: 'He',Status:'Pending',Category:'BCD',Comment:'hbsrhbshvbHS V'},
 ];
 
 @Component({
@@ -23,16 +14,33 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class HistoryComponent {
-  constructor() { }
-@Input() tabIndex:number;
-
-  displayedColumns: string[] = ['UserId', 'Date', 'Title', 'Address','Status','Category','Comment'];
+  constructor(private _appservice:AppService) { }
+  @Input() tabIndex:number;
+  @Input() data:any;
+  displayedColumns: string[] = ['ticketId', 'date', 'address','status','category','details'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+  DATA:PeriodicElement[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    var d = new Date();
+    d.setDate(d.getDate()-this.data["Date"]);
+    var date=d.getDate();
+    var month=d.getMonth()+1;
+    var year=d.getFullYear();
+    var newDate=year+"-"+month+"-"+date
+  }
+  ApiHitHistory(){
+    var d = new Date();
+    d.setDate(d.getDate()-this.data["Date"]);
+    var date=d.getDate();
+    var month=d.getMonth()+1;
+    var year=d.getFullYear();
+    var newDate=year+"-"+month+"-"+date;
+    this._appservice.getPending(this.data["UserId"],newDate,2).subscribe(res=>{this.DATA=res;
+      // console.log(this.DATA);
+       this.dataSource=new MatTableDataSource<PeriodicElement>(this.DATA);
+     });
   }
   
 }

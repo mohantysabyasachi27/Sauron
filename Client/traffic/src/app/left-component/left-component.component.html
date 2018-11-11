@@ -1,0 +1,12 @@
+<div class="container left">
+  <div class="col-sm-4 text-center">
+    <h2 class="text-center">PIE chart to compare between All and Approved request</h2>
+    <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [colors]="pieChartColors"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+      </div>
+</div>
