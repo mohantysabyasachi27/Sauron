@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import UIKit
 import MobileCoreServices
 import AVFoundation
 import Photos
 import Alamofire
+import PopupDialog
 
 class ViewController: CustomTransitionViewController {
 
@@ -26,7 +26,7 @@ class ViewController: CustomTransitionViewController {
         if !Authentication.shared.isLoggedIn{
             self.leftBarButton.setTitle("Login", for: .normal)
         } else {
-            self.leftBarButton.setTitle("Login", for: .normal)
+            self.leftBarButton.setTitle("Logout", for: .normal)
         }
     }
     
@@ -34,8 +34,6 @@ class ViewController: CustomTransitionViewController {
         super.viewWillAppear(animated)
         leftBarButton.tintColor = UIColor.peacockBlue()
         self.determineMyCurrentLocation()
-        self.showAttachmentActionSheet()
-
     }
     
     enum AttachmentType: String{
@@ -44,14 +42,22 @@ class ViewController: CustomTransitionViewController {
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         Authentication.shared.logout()
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+//            let navCtrl = UINavigationController(rootViewController: viewController)
+//            navCtrl.modalTransitionStyle = .flipHorizontal
+//            self.navigationController?.present(navCtrl, animated: true, completion: nil)
+//        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-            let navCtrl = UINavigationController(rootViewController: viewController)
-            navCtrl.modalTransitionStyle = .flipHorizontal
-            self.navigationController?.present(navCtrl, animated: true, completion: nil)
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
+
     }
     
+    @IBAction func uploadButtonPressed(_ sender: Any) {
+        self.showAttachmentActionSheet()
+    }
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -205,7 +211,7 @@ extension ViewController{
         if let imageData = image.jpegData(compressionQuality: 1){
             let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
             let fileName = imageURL.lastPathComponent
-            let user = Authentication.shared.user
+            let user = Authentication.shared.profile
             let parameters: [String:String] = [
                 "username" : user?.emailId ?? "anonymous",
                 "latitude"  : String(coordinate.latitude),
@@ -236,12 +242,28 @@ extension ViewController{
                         //self.removeImage("frame", fileExtension: "txt")
                         if let JSON = response.result.value {
                             print("JSON: \(JSON)")
+                            let popup = PopupDialog(title: "Awesome!!!", message: "You helped make the world a better place.")
+                            // Create buttons
+                            let buttonOne = CancelButton(title: "Yeyy!!!") {
+                                print("You canceled the car dialog.")
+                            }
+                            popup.addButton(buttonOne)
+                            self.present(popup, animated: true, completion: nil)
+                            
                         }
                     }
                     
                 case .failure(let encodingError):
                     //self.delegate?.showFailAlert()
                     print(encodingError)
+                    let popup = PopupDialog(title: "OOPS!!!", message: "It's not you, it's us. Please retry.")
+                    // Create buttons
+                    let buttonOne = CancelButton(title: "Ok") {
+                        print("You canceled the car dialog.")
+                    }
+                    popup.addButton(buttonOne)
+                    self.present(popup, animated: true, completion: nil)
+
                 }
                 
             }
@@ -251,7 +273,7 @@ extension ViewController{
     func uploadVideo(_ data: Data) {
 //        let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
 //        let fileName = imageURL.lastPathComponent
-        let user = Authentication.shared.user
+        let user = Authentication.shared.profile
         let parameters: [String:String] = [
             "username" : user?.emailId ?? "anonymous",
             "latitude"  : String(coordinate.latitude),
@@ -282,12 +304,28 @@ extension ViewController{
                     //self.removeImage("frame", fileExtension: "txt")
                     if let JSON = response.result.value {
                         print("JSON: \(JSON)")
+                        let popup = PopupDialog(title: "Awesome!!!", message: "You helped make the world a better place.")
+                        // Create buttons
+                        let buttonOne = CancelButton(title: "Yeyy!!!") {
+                            print("You canceled the car dialog.")
+                        }
+                        popup.addButton(buttonOne)
+                        self.present(popup, animated: true, completion: nil)
+
                     }
                 }
                 
             case .failure(let encodingError):
                 //self.delegate?.showFailAlert()
                 print(encodingError)
+                let popup = PopupDialog(title: "OOPS!!!", message: "It's not you, it's us. Please retry.")
+                // Create buttons
+                let buttonOne = CancelButton(title: "Ok") {
+                    print("You canceled the car dialog.")
+                }
+                popup.addButton(buttonOne)
+                self.present(popup, animated: true, completion: nil)
+
             }
             
         }

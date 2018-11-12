@@ -21,27 +21,48 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        self.loginButton.cornerRadius = self.loginButton.frame.height/2
         // Do any additional setup after loading the view.
     }
         
     @IBAction func loginButtonPressed(_ sender: Any) {
         loginButton.startAnimation()
+        var hasError = false
+        if emailField.text == nil {
+            emailField.errorMessage = "missing email"
+            emailField.hasError = true
+            hasError = true
+        }
+        if passwordField.text == nil {
+            passwordField.errorMessage = "missing password"
+            passwordField.hasError = true
+            hasError = true
+        }
+        
+        if hasError {
+            self.loginButton.stopAnimation(animationStyle: .shake, completion: nil)
+            return
+            
+        }
+
         if let email = emailField.text, let password = passwordField.text{
             let parameters: [String:String?] = [
-                "emailId"   : emailField.text
+                "emailId"   : email
             ]
-            Alamofire.request(Constants.loginURL, method: .get)
-                .authenticate(user: email, password: password)
+            Alamofire.request(Constants.loginURL, method: .post, parameters: ["username":email,"password":password])
                 .responseJSON { data in
                     if let response = Response(data.result.value){
                         if response.statusCode == 200 && response.success == true{
+                            Authentication.shared.isLoggedIn = true
+                            UserDefaults.standard.set(parameters, forKey: "UserDetails")
+                            UserDefaults.standard.set(email, forKey: "email")
+//                            Authentication.shared.fetchUserProfile()
                             self.loginButton.stopAnimation(animationStyle: .expand, completion: {
                                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                if let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-                                    self.present(viewController, animated: true, completion: nil)
-                                    Authentication.shared.isLoggedIn = true
-                                    UserDefaults.standard.set(parameters, forKey: "UserDetails")
-                                    self.navigationController?.setViewControllers([viewController], animated: true)
+                                if let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+//                                    self.present(viewController, animated: true, completion: nil)
+//                                    UIApplication.shared.keyWindow?.rootViewController = UINavigationController(rootViewController: viewController)
+                                    self.navigationController?.setViewControllers([viewController], animated: false)
                                 }
                             })
                         } else{
@@ -66,7 +87,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func skipButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
             let navCtrl = UINavigationController(rootViewController: viewController)
             navCtrl.modalTransitionStyle = .flipHorizontal
             self.navigationController?.present(navCtrl, animated: true, completion: nil)        }

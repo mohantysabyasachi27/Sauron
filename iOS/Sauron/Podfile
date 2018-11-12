@@ -9,5 +9,7 @@ target 'Sauron' do
     pod 'TransitionButton'
 #    pod 'SwiftyCam', :git => 'https://github.com/Awalz/SwiftyCam.git', :branch => 'Swift4'
     pod 'PopupDialog', '~> 0.9'
-
+    pod 'SnapKit'
+    pod 'DropDown'
+    pod 'MKProgress'
 end

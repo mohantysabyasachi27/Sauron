@@ -27,6 +27,20 @@
 		97525E0521972DBE00DF39C8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E0421972DBE00DF39C8 /* Response.swift */; };
 		97525E07219748A200DF39C8 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E06219748A200DF39C8 /* Authentication.swift */; };
 		97525E092197761800DF39C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E082197761800DF39C8 /* User.swift */; };
+		97525E122197DC0800DF39C8 /* TwitterProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E0B2197DC0700DF39C8 /* TwitterProfileHeaderView.swift */; };
+		97525E132197DC0800DF39C8 /* TwitterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E0C2197DC0700DF39C8 /* TwitterProfileViewController.swift */; };
+		97525E142197DC0800DF39C8 /* Bundle+Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E0D2197DC0700DF39C8 /* Bundle+Pod.swift */; };
+		97525E152197DC0800DF39C8 /* ProfileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E0E2197DC0700DF39C8 /* ProfileIconView.swift */; };
+		97525E162197DC0800DF39C8 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E0F2197DC0700DF39C8 /* RoundButton.swift */; };
+		97525E172197DC0800DF39C8 /* TwitterProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97525E102197DC0700DF39C8 /* TwitterProfileHeaderView.xib */; };
+		97525E182197DC0800DF39C8 /* TouchRespondScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E112197DC0700DF39C8 /* TouchRespondScrollView.swift */; };
+		97525E1B2197E18400DF39C8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E1A2197E18400DF39C8 /* ProfileViewController.swift */; };
+		97525E1D2197F6FF00DF39C8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E1C2197F6FF00DF39C8 /* Category.swift */; };
+		97525E202198001400DF39C8 /* WelcomeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E1E2198001400DF39C8 /* WelcomeAlertView.swift */; };
+		97525E212198001400DF39C8 /* WelcomeAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97525E1F2198001400DF39C8 /* WelcomeAlertView.xib */; };
+		97525E232198245400DF39C8 /* Tickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E222198245400DF39C8 /* Tickets.swift */; };
+		97525E262198506000DF39C8 /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97525E242198505F00DF39C8 /* TicketTableViewCell.swift */; };
+		97525E272198506000DF39C8 /* TicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97525E252198505F00DF39C8 /* TicketTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +66,20 @@
 		97525E0421972DBE00DF39C8 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		97525E06219748A200DF39C8 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		97525E082197761800DF39C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		97525E0B2197DC0700DF39C8 /* TwitterProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterProfileHeaderView.swift; sourceTree = "<group>"; };
+		97525E0C2197DC0700DF39C8 /* TwitterProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterProfileViewController.swift; sourceTree = "<group>"; };
+		97525E0D2197DC0700DF39C8 /* Bundle+Pod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Pod.swift"; sourceTree = "<group>"; };
+		97525E0E2197DC0700DF39C8 /* ProfileIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileIconView.swift; sourceTree = "<group>"; };
+		97525E0F2197DC0700DF39C8 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		97525E102197DC0700DF39C8 /* TwitterProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterProfileHeaderView.xib; sourceTree = "<group>"; };
+		97525E112197DC0700DF39C8 /* TouchRespondScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchRespondScrollView.swift; sourceTree = "<group>"; };
+		97525E1A2197E18400DF39C8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		97525E1C2197F6FF00DF39C8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		97525E1E2198001400DF39C8 /* WelcomeAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeAlertView.swift; sourceTree = "<group>"; };
+		97525E1F2198001400DF39C8 /* WelcomeAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeAlertView.xib; sourceTree = "<group>"; };
+		97525E222198245400DF39C8 /* Tickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tickets.swift; sourceTree = "<group>"; };
+		97525E242198505F00DF39C8 /* TicketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
+		97525E252198505F00DF39C8 /* TicketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketTableViewCell.xib; sourceTree = "<group>"; };
 		BA087AB0A5C6AC4B93FB4B6F /* Pods-Sauron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sauron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sauron/Pods-Sauron.debug.xcconfig"; sourceTree = "<group>"; };
 		E7B37C074F791EBE97A72911 /* Pods_Sauron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sauron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,6 +134,7 @@
 		97525DD42196CCB200DF39C8 /* Sauron */ = {
 			isa = PBXGroup;
 			children = (
+				97525E192197E13600DF39C8 /* Profile */,
 				97525E0321972D9F00DF39C8 /* Model */,
 				97525DED2196CCE600DF39C8 /* Registration */,
 				97525DE72196CCE600DF39C8 /* Utils */,
@@ -123,6 +152,7 @@
 		97525DE72196CCE600DF39C8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				97525E0A2197DC0700DF39C8 /* ProfileUtils */,
 				97525DE82196CCE600DF39C8 /* Extensions */,
 				97525DEA2196CCE600DF39C8 /* CustomComponents */,
 				97525DFB2196DDA300DF39C8 /* Constants.swift */,
@@ -168,8 +198,36 @@
 			children = (
 				97525E0421972DBE00DF39C8 /* Response.swift */,
 				97525E082197761800DF39C8 /* User.swift */,
+				97525E1C2197F6FF00DF39C8 /* Category.swift */,
+				97525E222198245400DF39C8 /* Tickets.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		97525E0A2197DC0700DF39C8 /* ProfileUtils */ = {
+			isa = PBXGroup;
+			children = (
+				97525E0B2197DC0700DF39C8 /* TwitterProfileHeaderView.swift */,
+				97525E0C2197DC0700DF39C8 /* TwitterProfileViewController.swift */,
+				97525E0D2197DC0700DF39C8 /* Bundle+Pod.swift */,
+				97525E0E2197DC0700DF39C8 /* ProfileIconView.swift */,
+				97525E0F2197DC0700DF39C8 /* RoundButton.swift */,
+				97525E102197DC0700DF39C8 /* TwitterProfileHeaderView.xib */,
+				97525E112197DC0700DF39C8 /* TouchRespondScrollView.swift */,
+			);
+			path = ProfileUtils;
+			sourceTree = "<group>";
+		};
+		97525E192197E13600DF39C8 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				97525E1A2197E18400DF39C8 /* ProfileViewController.swift */,
+				97525E1E2198001400DF39C8 /* WelcomeAlertView.swift */,
+				97525E1F2198001400DF39C8 /* WelcomeAlertView.xib */,
+				97525E242198505F00DF39C8 /* TicketTableViewCell.swift */,
+				97525E252198505F00DF39C8 /* TicketTableViewCell.xib */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +291,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				97525DE02196CCB300DF39C8 /* LaunchScreen.storyboard in Resources */,
+				97525E272198506000DF39C8 /* TicketTableViewCell.xib in Resources */,
+				97525E172197DC0800DF39C8 /* TwitterProfileHeaderView.xib in Resources */,
+				97525E212198001400DF39C8 /* WelcomeAlertView.xib in Resources */,
 				97525DDD2196CCB300DF39C8 /* Assets.xcassets in Resources */,
 				97525DDB2196CCB200DF39C8 /* Main.storyboard in Resources */,
 			);
@@ -273,8 +334,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Sauron/Pods-Sauron-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -282,8 +345,10 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,21 +364,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				97525DF42196CCE600DF39C8 /* LoginViewController.swift in Sources */,
+				97525E232198245400DF39C8 /* Tickets.swift in Sources */,
+				97525E122197DC0800DF39C8 /* TwitterProfileHeaderView.swift in Sources */,
 				97525DFA2196D10700DF39C8 /* FadeTransition.swift in Sources */,
 				97525DF32196CCE600DF39C8 /* SignUpViewController.swift in Sources */,
 				97525DF22196CCE600DF39C8 /* MyTextField.swift in Sources */,
+				97525E152197DC0800DF39C8 /* ProfileIconView.swift in Sources */,
 				97525E092197761800DF39C8 /* User.swift in Sources */,
+				97525E132197DC0800DF39C8 /* TwitterProfileViewController.swift in Sources */,
 				97525E02219722BD00DF39C8 /* RoundShadowView.swift in Sources */,
+				97525E182197DC0800DF39C8 /* TouchRespondScrollView.swift in Sources */,
+				97525E162197DC0800DF39C8 /* RoundButton.swift in Sources */,
 				97525DFE2197024400DF39C8 /* AttachmentHandler.swift in Sources */,
 				97525E0521972DBE00DF39C8 /* Response.swift in Sources */,
+				97525E202198001400DF39C8 /* WelcomeAlertView.swift in Sources */,
 				97525DF82196D09900DF39C8 /* CustomTransitionViewController.swift in Sources */,
+				97525E142197DC0800DF39C8 /* Bundle+Pod.swift in Sources */,
+				97525E1B2197E18400DF39C8 /* ProfileViewController.swift in Sources */,
 				97525E07219748A200DF39C8 /* Authentication.swift in Sources */,
 				97525DFC2196DDA300DF39C8 /* Constants.swift in Sources */,
 				97525DD82196CCB200DF39C8 /* ViewController.swift in Sources */,
 				97525E0021971C2300DF39C8 /* ReportViewController.swift in Sources */,
 				97525DD62196CCB200DF39C8 /* AppDelegate.swift in Sources */,
 				97525DF12196CCE600DF39C8 /* TextFieldEffects.swift in Sources */,
+				97525E262198506000DF39C8 /* TicketTableViewCell.swift in Sources */,
 				97525DF02196CCE600DF39C8 /* UIColorExtension.swift in Sources */,
+				97525E1D2197F6FF00DF39C8 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

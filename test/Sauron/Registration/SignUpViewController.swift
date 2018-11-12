@@ -25,11 +25,44 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        self.signupButton.cornerRadius = self.signupButton.frame.height/2
         // Do any additional setup after loading the view.
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {
         signupButton.startAnimation()
+        var hasError = false
+        if firstNameField.text == nil{
+            firstNameField.errorMessage = "missing firstname"
+            firstNameField.hasError = true
+            hasError = true
+        }
+        if lastNameField.text == nil{
+            lastNameField.errorMessage = "missing lastName"
+            lastNameField.hasError = true
+            hasError = true
+        }
+        if mobileField.text == nil {
+            mobileField.errorMessage = "missing mobile number"
+            mobileField.hasError = true
+            hasError = true
+        }
+        if emailField.text == nil {
+            emailField.errorMessage = "missing email"
+            emailField.hasError = true
+            hasError = true
+        }
+        if passwordField.text == nil {
+            passwordField.errorMessage = "missing password"
+            passwordField.hasError = true
+            hasError = true
+        }
+        
+        if hasError {
+            self.signupButton.stopAnimation(animationStyle: .shake, completion: nil)
+            return
+
+        }
         let parameters: [String:String?] = [
             "firstName" : firstNameField.text,
             "lastName"  : lastNameField.text,
@@ -42,13 +75,14 @@ class SignUpViewController: UIViewController {
         Alamofire.request(Constants.registerURL, method: .post, parameters: parameters as Parameters, encoding: JSONEncoding.default).responseJSON { (data) in 
             if let response = Response(data.result.value){
                 if response.statusCode == 200 && response.success == true{
+                    Authentication.shared.isLoggedIn = true
+                    UserDefaults.standard.set(parameters, forKey: "UserDetails")
+//                    Authentication.shared.fetchUserProfile()
                     self.signupButton.stopAnimation(animationStyle: .expand, completion: {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        if let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-                            self.present(viewController, animated: true, completion: nil)
-                            Authentication.shared.isLoggedIn = true
-                            UserDefaults.standard.set(parameters, forKey: "UserDetails")
-                            self.navigationController?.setViewControllers([viewController], animated: true)
+                        if let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+//                            self.present(viewController, animated: true, completion: nil)
+                            self.navigationController?.setViewControllers([viewController], animated: false)
                         }
                     })
                 } else{
@@ -74,7 +108,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func skipButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
             let navCtrl = UINavigationController(rootViewController: viewController)
             navCtrl.modalTransitionStyle = .flipHorizontal
             self.navigationController?.present(navCtrl, animated: true, completion: nil)

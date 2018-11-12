@@ -13,13 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Authentication.shared.fetchCategories()
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if Authentication.shared.isLoggedIn{
-            if let viewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+            if let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
                 self.window?.rootViewController = UINavigationController(rootViewController: viewController)
             }
         } else {

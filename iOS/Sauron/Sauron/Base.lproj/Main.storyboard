@@ -25,6 +25,16 @@
                     <view key="view" contentMode="scaleToFill" id="6IZ-T6-0T2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQX-Cd-Ai4">
+                                <rect key="frame" x="164" y="205" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="uploadButtonPressed:" destination="Bei-dk-AsV" eventType="touchUpInside" id="NNf-TD-eaL"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wIK-Mu-DRH"/>
                     </view>
@@ -59,15 +69,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iOS-stock-6-for-iPhone-X-768x1663" translatesAutoresizingMaskIntoConstraints="NO" id="TV3-9o-2bR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydb-Mf-WM5" customClass="RoundShadowView" customModule="Sauron" customModuleProvider="target">
                                 <rect key="frame" x="30" y="120.5" width="315" height="426"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Now!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beh-80-l79">
-                                        <rect key="frame" x="101.5" y="14" width="112" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGIN NOW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beh-80-l79">
+                                        <rect key="frame" x="95.5" y="14" width="124" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="oqM-bc-kpR"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="22"/>
+                                        <fontDescription key="fontDescription" name="Charter-Roman" family="Charter" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -87,7 +100,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartInsertDeleteType="no" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES" smartInsertDeleteType="no" textContentType="password"/>
                                     </textField>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ort-9v-Vjz" customClass="TransitionButton" customModule="TransitionButton">
                                         <rect key="frame" x="82.5" y="251" width="150" height="36"/>
@@ -119,15 +132,25 @@
                                             <action selector="signupButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1pr-Pe-LH1"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTn-fO-nG2">
+                                        <rect key="frame" x="62.5" y="52" width="190" height="2"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="VhG-Au-S7I"/>
+                                            <constraint firstAttribute="height" constant="2" id="xNj-hK-Gcb"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="yle-fk-ePN" firstAttribute="centerX" secondItem="Ydb-Mf-WM5" secondAttribute="centerX" id="5HQ-fU-klE"/>
                                     <constraint firstItem="beh-80-l79" firstAttribute="top" secondItem="Ydb-Mf-WM5" secondAttribute="top" constant="14" id="7he-ZE-e0M"/>
                                     <constraint firstItem="FIp-sB-Gwa" firstAttribute="top" secondItem="beh-80-l79" secondAttribute="bottom" constant="24" id="Axp-pr-2fG"/>
                                     <constraint firstItem="ort-9v-Vjz" firstAttribute="top" secondItem="bIk-qa-2Qa" secondAttribute="bottom" constant="54" id="Fr3-6W-qd3"/>
+                                    <constraint firstItem="MTn-fO-nG2" firstAttribute="centerX" secondItem="Ydb-Mf-WM5" secondAttribute="centerX" id="R4Y-cT-k6k"/>
                                     <constraint firstItem="beh-80-l79" firstAttribute="centerX" secondItem="Ydb-Mf-WM5" secondAttribute="centerX" id="V9w-o1-hg8"/>
                                     <constraint firstItem="FIp-sB-Gwa" firstAttribute="leading" secondItem="Ydb-Mf-WM5" secondAttribute="leading" constant="15" id="VVb-TZ-FFc"/>
                                     <constraint firstItem="yle-fk-ePN" firstAttribute="top" secondItem="ort-9v-Vjz" secondAttribute="bottom" constant="60" id="cVH-58-H1Q"/>
+                                    <constraint firstItem="MTn-fO-nG2" firstAttribute="top" secondItem="beh-80-l79" secondAttribute="bottom" constant="8" id="fDq-d9-zTn"/>
                                     <constraint firstItem="bIk-qa-2Qa" firstAttribute="top" secondItem="FIp-sB-Gwa" secondAttribute="bottom" constant="15" id="gNa-AJ-MBZ"/>
                                     <constraint firstAttribute="trailing" secondItem="bIk-qa-2Qa" secondAttribute="trailing" constant="15" id="lIZ-OH-E0o"/>
                                     <constraint firstItem="bIk-qa-2Qa" firstAttribute="leading" secondItem="Ydb-Mf-WM5" secondAttribute="leading" constant="15" id="lnH-a1-Len"/>
@@ -153,7 +176,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ydb-Mf-WM5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4aD-Hf-uDx"/>
+                            <constraint firstItem="TV3-9o-2bR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9Dv-Vr-nqu"/>
+                            <constraint firstItem="Zrp-Ow-xF3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="EUw-1V-K3U"/>
                             <constraint firstItem="Ydb-Mf-WM5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Qax-Sv-HoY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TV3-9o-2bR" secondAttribute="bottom" id="Qwh-4o-Yus"/>
+                            <constraint firstItem="TV3-9o-2bR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SiP-cJ-BYv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TV3-9o-2bR" secondAttribute="trailing" id="Wfh-Mn-aBI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zrp-Ow-xF3" secondAttribute="trailing" constant="30" id="cOd-rh-sWJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ydb-Mf-WM5" secondAttribute="trailing" constant="30" id="rcz-uT-nPO"/>
                             <constraint firstItem="Zrp-Ow-xF3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="6" id="ue1-Eo-wGs"/>
@@ -180,15 +208,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iOS-stock-6-for-iPhone-X-768x1663" translatesAutoresizingMaskIntoConstraints="NO" id="oOH-ly-MpD">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nO7-9H-0tD" customClass="RoundShadowView" customModule="Sauron" customModuleProvider="target">
                                 <rect key="frame" x="30" y="64" width="315" height="559"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signup Now!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od6-P4-coW">
-                                        <rect key="frame" x="94.5" y="14" width="126.5" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od6-P4-coW">
+                                        <rect key="frame" x="64.5" y="14" width="186.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5Tx-1v-pws"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="22"/>
+                                        <fontDescription key="fontDescription" name="Charter-Roman" family="Charter" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -199,7 +230,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartInsertDeleteType="no" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fnM-3I-22V" customClass="MyTextField" customModule="Sauron" customModuleProvider="target">
                                         <rect key="frame" x="15" y="334" width="285" height="57"/>
@@ -208,7 +239,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartInsertDeleteType="no" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" secureTextEntry="YES"/>
                                     </textField>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igZ-Yo-lzp" customClass="TransitionButton" customModule="TransitionButton">
                                         <rect key="frame" x="82.5" y="411" width="150" height="36"/>
@@ -247,19 +278,27 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartInsertDeleteType="no" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GNe-Jq-UNU" customClass="MyTextField" customModule="Sauron" customModuleProvider="target">
                                         <rect key="frame" x="15" y="139" width="285" height="57"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartInsertDeleteType="no"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="01z-S9-U4T" customClass="MyTextField" customModule="Sauron" customModuleProvider="target">
                                         <rect key="frame" x="15" y="204" width="285" height="57"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="done" smartInsertDeleteType="no" textContentType="tel"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="done"/>
                                     </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXZ-Qa-WWN">
+                                        <rect key="frame" x="47.5" y="52" width="220" height="2"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="VCn-BV-SCL"/>
+                                            <constraint firstAttribute="width" constant="220" id="mEn-U6-qui"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="fnM-3I-22V" firstAttribute="top" secondItem="bds-vH-2wK" secondAttribute="bottom" constant="8" id="0Be-Cy-FeL"/>
@@ -282,10 +321,12 @@
                                     <constraint firstItem="fnM-3I-22V" firstAttribute="leading" secondItem="nO7-9H-0tD" secondAttribute="leading" constant="15" id="gW2-Eg-Ha6"/>
                                     <constraint firstItem="01z-S9-U4T" firstAttribute="leading" secondItem="GNe-Jq-UNU" secondAttribute="leading" id="jne-Bc-RXl"/>
                                     <constraint firstItem="01z-S9-U4T" firstAttribute="top" secondItem="GNe-Jq-UNU" secondAttribute="bottom" constant="8" id="jzp-So-eBq"/>
+                                    <constraint firstItem="RXZ-Qa-WWN" firstAttribute="top" secondItem="Od6-P4-coW" secondAttribute="bottom" constant="8" id="kwh-9d-bnf"/>
                                     <constraint firstItem="bds-vH-2wK" firstAttribute="leading" secondItem="nO7-9H-0tD" secondAttribute="leading" constant="15" id="nMu-JY-jZM"/>
                                     <constraint firstAttribute="trailing" secondItem="zme-9g-i7L" secondAttribute="trailing" constant="15" id="pVs-gz-NQS"/>
                                     <constraint firstAttribute="trailing" secondItem="bds-vH-2wK" secondAttribute="trailing" constant="15" id="sdI-RN-ee1"/>
                                     <constraint firstItem="GNe-Jq-UNU" firstAttribute="trailing" secondItem="zme-9g-i7L" secondAttribute="trailing" id="wkI-TY-2Dy"/>
+                                    <constraint firstItem="RXZ-Qa-WWN" firstAttribute="centerX" secondItem="nO7-9H-0tD" secondAttribute="centerX" id="xUt-yc-uBt"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLf-HP-Tdo" customClass="TransitionButton" customModule="TransitionButton">
@@ -304,13 +345,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="kz3-gt-dbB" firstAttribute="bottom" secondItem="oOH-ly-MpD" secondAttribute="bottom" id="0B5-71-zmn"/>
                             <constraint firstItem="kz3-gt-dbB" firstAttribute="bottom" secondItem="nO7-9H-0tD" secondAttribute="bottom" constant="44" id="0Pn-IG-7ts"/>
                             <constraint firstItem="kz3-gt-dbB" firstAttribute="trailing" secondItem="bLf-HP-Tdo" secondAttribute="trailing" constant="30" id="4Dr-iG-zAL"/>
+                            <constraint firstItem="oOH-ly-MpD" firstAttribute="top" secondItem="kz3-gt-dbB" secondAttribute="top" id="D2e-9f-2uy"/>
                             <constraint firstItem="bLf-HP-Tdo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kz3-gt-dbB" secondAttribute="leading" symbolic="YES" id="FFy-93-aj1"/>
                             <constraint firstItem="nO7-9H-0tD" firstAttribute="top" secondItem="kz3-gt-dbB" secondAttribute="top" constant="44" id="LN8-7K-vQb"/>
+                            <constraint firstItem="oOH-ly-MpD" firstAttribute="leading" secondItem="kz3-gt-dbB" secondAttribute="leading" id="Wnv-H8-uJm"/>
                             <constraint firstItem="nO7-9H-0tD" firstAttribute="leading" secondItem="kz3-gt-dbB" secondAttribute="leading" constant="30" id="ZYJ-VL-edd"/>
                             <constraint firstItem="kz3-gt-dbB" firstAttribute="trailing" secondItem="nO7-9H-0tD" secondAttribute="trailing" constant="30" id="bKS-sR-L1o"/>
                             <constraint firstItem="nO7-9H-0tD" firstAttribute="top" secondItem="bLf-HP-Tdo" secondAttribute="bottom" constant="8" id="jTT-dL-3x7"/>
+                            <constraint firstItem="kz3-gt-dbB" firstAttribute="trailing" secondItem="oOH-ly-MpD" secondAttribute="trailing" id="t7p-C8-w20"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kz3-gt-dbB"/>
                     </view>
@@ -329,14 +374,25 @@
             </objects>
             <point key="canvasLocation" x="1700" y="132.68365817091455"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="C4L-Wh-InZ">
             <objects>
-                <viewController id="rxz-fp-Cm3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="rxz-fp-Cm3" customClass="ProfileViewController" customModule="Sauron" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QO4-LS-adx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iOS-stock-6-for-iPhone-X-768x1663" translatesAutoresizingMaskIntoConstraints="NO" id="ATR-g9-HOl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kdx-Xm-fLg" firstAttribute="trailing" secondItem="ATR-g9-HOl" secondAttribute="trailing" id="Bsc-Y4-xAW"/>
+                            <constraint firstItem="ATR-g9-HOl" firstAttribute="top" secondItem="QO4-LS-adx" secondAttribute="top" id="DPR-6l-mqQ"/>
+                            <constraint firstItem="ATR-g9-HOl" firstAttribute="leading" secondItem="QO4-LS-adx" secondAttribute="leading" id="V2l-yB-L4C"/>
+                            <constraint firstItem="kdx-Xm-fLg" firstAttribute="bottom" secondItem="ATR-g9-HOl" secondAttribute="bottom" id="d90-c6-ZRD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kdx-Xm-fLg"/>
                     </view>
                 </viewController>
@@ -344,5 +400,23 @@
             </objects>
             <point key="canvasLocation" x="2407" y="132"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="BRs-cR-j7b">
+            <objects>
+                <viewController id="beG-W5-U0W" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ALN-tA-QIe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WE0-uo-NkQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lIe-n3-Tjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3079" y="132"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="iOS-stock-6-for-iPhone-X-768x1663" width="576" height="1247.25"/>
+    </resources>
 </document>

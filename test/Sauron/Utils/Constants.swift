@@ -7,12 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 public struct Constants {
-    public static let baseURL: String = "http://localhost:8080/"
+    //35.196.69.61:8080/admin/users
+    public static let baseURL: String = "http://35.196.69.61:8080/"
     public static let registerURL: String = baseURL + "users"
     public static let loginURL: String = baseURL + "login"
-    public static let ticket: String = baseURL + "ticket"
+    public static let ticket: String = baseURL + "ticket/ios"
+    public static let categories: String = baseURL + "category"
+    public static let profile: String = registerURL + "/" + (Authentication.shared.email ?? "")
+    public static let ticketStatus: String = baseURL + "ticket/" + (Authentication.shared.email ?? "")
 
     
     public static let actionFileTypeHeading = "Upload"
@@ -29,4 +34,8 @@ public struct Constants {
     
     public static let settingsBtnTitle = "Settings"
     public static let cancelBtnTitle = "Cancel"
+    
+    public static let SCREEN_HEIGHT:CGFloat = UIScreen.main.bounds.height
+    public static let SCREEN_WIDTH :CGFloat = UIScreen.main.bounds.width
+
 }
